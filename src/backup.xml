@@ -1,0 +1,28 @@
+<backup>
+  <data name="cached_stamp_file">
+    <file>E:\Desktop\Programmation\gitDuBled\explication.png<data name="stamp">1630351478.1058757</data><data name="type">png</data><data name="backUp">1</data></file>
+    <file>E:\Desktop\Programmation\gitDuBled\readme.md<data name="stamp">1630361047.4295337</data><data name="type">md</data><data name="backUp">1</data></file>
+    <file>E:\Desktop\Programmation\gitDuBled\run.bat<data name="stamp">1630352062.475876</data><data name="type">bat</data><data name="backUp">1</data></file>
+    <file>E:\Desktop\Programmation\gitDuBled\src\Function.py<data name="stamp">1630568836.9690905</data><data name="type">py</data><data name="backUp">1</data></file>
+    <file>E:\Desktop\Programmation\gitDuBled\src\main.py<data name="stamp">1630352191.3874576</data><data name="type">py</data><data name="backUp">1</data></file>
+    <file>E:\Desktop\Programmation\gitDuBled\src\projectCreator.py<data name="stamp">1630569098.0560904</data><data name="type">py</data><data name="backUp">1</data></file>
+    <file>E:\Desktop\Programmation\gitDuBled\src\watcher.py<data name="stamp">1630569223.1370907</data><data name="type">py</data><data name="backUp">1</data></file>
+  </data>
+  <data name="cached_stamp_floder">
+    <file>E:\Desktop\Programmation\gitDuBled<data name="stamp">4096</data></file>
+    <file>E:\Desktop\Programmation\gitDuBled\src<data name="stamp">4096</data></file>
+  </data>
+  <data name="dirs">
+    <path>E:\Desktop\Programmation\gitDuBled</path>
+    <path>E:\Desktop\Programmation\gitDuBled\src</path>
+  </data>
+  <data name="data">
+    <path>E:\Desktop\Programmation\gitDuBled\explication.png</path>
+    <path>E:\Desktop\Programmation\gitDuBled\readme.md</path>
+    <path>E:\Desktop\Programmation\gitDuBled\run.bat</path>
+    <path>E:\Desktop\Programmation\gitDuBled\src\Function.py</path>
+    <path>E:\Desktop\Programmation\gitDuBled\src\main.py</path>
+    <path>E:\Desktop\Programmation\gitDuBled\src\projectCreator.py</path>
+    <path>E:\Desktop\Programmation\gitDuBled\src\watcher.py</path>
+  </data>
+</backup>

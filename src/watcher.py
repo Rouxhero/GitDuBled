@@ -2,7 +2,7 @@ import threading
 from Function import *
 import re
 from time import sleep as pause
-
+from lxml import etree
 
 class Watcher(threading.Thread) :
 
@@ -36,11 +36,12 @@ class Watcher(threading.Thread) :
 						self.dirs.append(path+separator+floder)
 						self.cached_stamp_floder[path+separator+floder] = {"stamp":os.stat(path+separator+floder).st_size}
 				for file in files:
-					end = file.split('.')
+					end = file.split('.')	
 					if len(end) > 1 :
 						end = end[-1]
 						self.data.append(path+separator+file)
 						self.cached_stamp_file[path+separator+file] = {"stamp":os.stat(path+separator+file).st_mtime, "type":end, "backUp":"1"}
+		self.dataFile = {"cached_stamp_file":self.cached_stamp_file,"cached_stamp_floder":self.cached_stamp_floder,"dirs":self.dirs,"data":self.data}
 		self.save()
 		# self.save()
 		# self.save()
@@ -74,6 +75,7 @@ class Watcher(threading.Thread) :
 							self.cached_stamp_file[file]["stamp"] = stamp
 							self.cached_stamp_file[file]["backUp"] = str(self.Actualbackup+1)
 						else :
+							pass
 							# TODO save old backup (link)
 					else :
 						end = file.split('.')
@@ -87,5 +89,25 @@ class Watcher(threading.Thread) :
 
 if __name__ == '__main__':
 	test = Watcher('E:\\Desktop\\Programmation\\gitDuBled')
-	print(test.dirs)
-	print(test.cached_stamp_floder)
+	print(test.dataFile)
+
+
+
+# class Backup :
+
+# 	def __init__(self,path : str, data : dict):
+# 		self.path = path
+# 		self.data = data
+
+# 	def load(self):
+# 		pass
+
+# 	def save(self):
+# 		with open(self.path+separator+".backup","r") as file:
+# 			for key in self.data:
+# 				dataKey = etree.Element(key)
+# 				for subKey in self.data[key]:
+# 					subData = etree.SubElement(dataKey, subKey)
+# 					for dataFile in self.data[key][dataKey]:
+# 						subFile = etree.SubElement(subData, dataFile)
+# 			print(etree.tostring(users, pretty_print=True))
