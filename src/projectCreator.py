@@ -64,7 +64,7 @@ with open("backup.xml","wb") as file:
 							dataStamp.text =  str(data[key][subKey][dataKeyS])
 				else:
 					for subKey in data[key]:
-						stamp = etree.SubElement(cache, "path")
+						stamp = etree.SubElement(cache, "path")	
 						stamp.text=subKey
 				
 			# print(etree.tostring(dataKey, pretty_print=True).decode())

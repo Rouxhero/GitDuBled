@@ -95,7 +95,7 @@ if __name__ == '__main__':
 
 # class Backup :
 
-# 	def __init__(self,path : str, data : dict):
+# 	def __init__(self,path : str, data : dict, nbBackup : int):
 # 		self.path = path
 # 		self.data = data
 
