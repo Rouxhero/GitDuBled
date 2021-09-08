@@ -71,15 +71,15 @@ class Player{
 # List<Character> listeCharacter
 # List<Tile> territory
 # int gold
-+Player()
-+ deployCharac(Character character, Tile tile) : void
-+ harvestTerritory() : void
-+ feedCharac(Character character) : void
-+ endRound(Player player) : void
-+ convert(Resource resource) : int
-+ getPoints(Player player) : int
-+ rent(int amount) : void
-+ getGold(Player player) : int
++ Player()
++ deployCharac(Character character, Tile tile):void
++ harvestTerritory():void
++ feedCharac(Character character):void
++ endRound(Player player):void
++ convert(Resource resource):int
++ getPoints(Player player):int
++ rent(int amount):void
++ getGold(Player player):int
 
 }
 /'############################################################################"'/
@@ -89,8 +89,8 @@ class Board{
 + int nbOfTile
 + int length
 + int widht
-+Board(int length,int widht)
-+getNumberOfTile():int
++ Board(int length,int widht)
++ getNumberOfTile():int
 }
 class Tile{
 # int x
@@ -98,8 +98,8 @@ class Tile{
 # Resources loot
 # bool isEmpty
 + Tile(int x, int y)
-+ getX() : int
-+ getY() : int
++ getX():int
++ getY():int
 + getResourcesOnHarvest(): Resources
 + getUnitsOnTile():int
 }
@@ -168,8 +168,8 @@ Game <|-- WarGame
 
 /'###########################################################################"'/
 
-Character -- Tile : position
+Character -- Tile:position
 Player -- Game
-/'Tile -- Resources : Harvest
-Player -- Character : deploy'/
+/'Tile -- Resources:Harvest
+Player -- Character:deploy'/
 @enduml
