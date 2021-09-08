@@ -1,0 +1,175 @@
+@startuml
+/'################################## Resources ##################################'/
+interface Resources{
+
+}
+class Wheat{
++ int static final REWARD
++ int static final COEF_ASK
+
+}
+class Wood{
++ int static final REWARD
++ int static final COEF_ASK
+
+}
+class Stone{
++ int static final REWARD
++ int static final COEF_ASK
+
+}
+class Sand{
++ int static final REWARD
++ int static final COEF_ASK
+
+}
+
+/'====> definition'/
+
+Resources <|-- Wheat
+Resources <|-- Wood
+Resources <|-- Stone
+Resources <|-- Sand
+/'################################################################################'/
+
+/'################################## Character ##################################'/
+abstract class Character{
+# int gold
+# Player Owner
+# Tile position
++ getGold(int):void
++ getPosition():Tile
++ getOwner():Player
++ kill():void
+# numberUnitsClaimed():int
+}
+/' mettre les fonctions qui servent à nourrir et payer dans player plutot pour pouvoir gerer les ressources directement dans player '/
+class Army{
++ int size
+
++ Army(int size, Tile position)
++ getSize():int
++ fight(Army other):void
++ extendArmy():void
++ numberUnitsClaimed():int
+}
+class Worker{
++ Worker(Tile position)
++ bePayed(int):void
++ numberUnitsClaimed():int
+}
+
+/'====> definition'/
+Character<|-- Army
+Character<|-- Worker
+
+/'###############################################################################'/
+
+/'################################## Player ##################################'/
+class Player{
+# HashMap<Resources,int> listeResources
+# List<Character> listeCharacter
+# List<Tile> territory
+# int gold
++Player()
++ deployCharac(Character character, Tile tile) : void
++ harvestTerritory() : void
++ feedCharac(Character character) : void
++ endRound(Player player) : void
++ convert(Resource resource) : int
++ getPoints(Player player) : int
++ rent(int amount) : void
++ getGold(Player player) : int
+
+}
+/'############################################################################"'/
+
+/'################################## Board ##################################'/
+class Board{
++ int nbOfTile
++ int length
++ int widht
++Board(int length,int widht)
++getNumberOfTile():int
+}
+class Tile{
+# int x
+# int y
+# Resources loot
+# bool isEmpty
++ Tile(int x, int y)
++ getX() : int
++ getY() : int
++ getResourcesOnHarvest(): Resources
++ getUnitsOnTile():int
+}
+class Hills{
++ Resources resourcesHarvest
++ Hills(int x,int y)
+}
+
+class Forest{
++ Resources resourcesHarvest
++ Forest(int x,int y)
+}
+
+class Plaine{
++ Resources resourcesHarvest
++ Plaine(int x,int y)
+}
+
+class Sea{
++ Resources resourcesHarvest
++ Sea(int x,int y)
+} 
+class Desert{
++ Resources resourcesHarvest
++ Desert(int x,int y)
+}
+
+/'====> definition'/
+Board -- Tile
+Tile <|-- Hills
+Tile <|-- Forest
+Tile <|-- Plainea	
+Tile <|-- Sea
+Tile <|-- Desert
+
+/'###########################################################################"'/
+/'#################################### Game #################################"'/
+
+
+abstract class Game{
+
++ List<Player> playerList
++ int nbRound
++ Board theBoard
++ int final lastRound
+
++ getLastRound():int
++ addPlayer(Player player):void
++ playOnRound():void
++ play():void
+
+
+}
+class WarGame{
+
++ WarGame(Board board):void
+}
+
+class FarmGame{
+
++ FarmGame(Board board):void
+}
+
+Game <|-- FarmGame
+Game <|-- WarGame
+
+/'###########################################################################"'/
+
+Character -- Tile : position
+Player -- Game
+/'Tile -- Resources : Harvest
+Player -- Character : deploy'/
+@enduml
