@@ -1,12 +1,6 @@
-# import pyautogui as auto
-# from time import sleep as pause
-
 
 from lxml import etree
 
-# pause(5)
-# auto.write('test')
-# auto.press('space')
 
 data = {'cached_stamp_file':
 			{
@@ -101,3 +95,4 @@ print(data2)
 # metier = etree.SubElement(user, "metier")
 # metier.text = "Danseur"
 
+{'cached_stamp_file': {'E:\\Desktop\\Programmation\\gitDuBled\\explication.png': {'stamp': 1630351478.1058757, 'type': 'png', 'backUp': '1'}, 'E:\\Desktop\\Programmation\\gitDuBled\\readme.md': {'stamp': 1630361047.4295337, 'type': 'md', 'backUp': '1'}, 'E:\\Desktop\\Programmation\\gitDuBled\\run.bat': {'stamp': 1630352062.475876, 'type': 'bat', 'backUp': '1'}, 'E:\\Desktop\\Programmation\\gitDuBled\\src\\Function.py': {'stamp': 1630568836.9690905, 'type': 'py', 'backUp': '1'}, 'E:\\Desktop\\Programmation\\gitDuBled\\src\\main.py': {'stamp': 1630352191.3874576, 'type': 'py', 'backUp': '1'}, 'E:\\Desktop\\Programmation\\gitDuBled\\src\\projectCreator.py': {'stamp': 1630569098.0560904, 'type': 'py', 'backUp': '1'}, 'E:\\Desktop\\Programmation\\gitDuBled\\src\\watcher.py': {'stamp': 1630569223.1370907, 'type': 'py', 'backUp': '1'}}, 'cached_stamp_floder': {'E:\\Desktop\\Programmation\\gitDuBled': {'stamp': 4096.0}, 'E:\\Desktop\\Programmation\\gitDuBled\\src': {'stamp': 4096.0}}, 'dirs': ['E:\\Desktop\\Programmation\\gitDuBled', 'E:\\Desktop\\Programmation\\gitDuBled\\src'], 'data': ['E:\\Desktop\\Programmation\\gitDuBled\\explication.png', 'E:\\Desktop\\Programmation\\gitDuBled\\readme.md', 'E:\\Desktop\\Programmation\\gitDuBled\\run.bat', 'E:\\Desktop\\Programmation\\gitDuBled\\src\\Function.py', 'E:\\Desktop\\Programmation\\gitDuBled\\src\\main.py', 'E:\\Desktop\\Programmation\\gitDuBled\\src\\projectCreator.py', 'E:\\Desktop\\Programmation\\gitDuBled\\src\\watcher.py']}
