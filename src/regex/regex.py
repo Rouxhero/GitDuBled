@@ -1,13 +1,21 @@
 import re
+import os
 from data import *
 from classF import *
-
-# Code fini :
-test = open("test.wsd", "r")
+from joint import *
+fatherRep = input("Directory Name >>> ")
+projectName = input("ProjectName >>> ")
+os.system("mkdir {}".format(fatherRep))
+os.system("mkdir {}/src".format(fatherRep))
+os.system("mkdir {}/src/{}".format(fatherRep,projectName))
+wsdPath = input('WSD file path >>> ')
+test = open(wsdPath ,"r")
 text = test.readline()
-data = {}
+packageData = {}
 key = ""
-
+pack = projectName
+implementListe = []
+extendsListe = []
 
 def cleantext(text):
     text = re.sub("\n", "", text)
@@ -15,100 +23,57 @@ def cleantext(text):
     return text
 
 
+def cleanI(text):
+    text = re.sub(r"<\|--", "<", text)
+    text = re.sub(r"--\|>", ">", text)
+    return cleantext(text)
+
+def cleanE(text):
+    text = re.sub(r"\*--", "<", text)
+    text = re.sub(r"--\*", ">", text)
+    return cleantext(text)
+
 while text:
-    if re.match(className, text):
+    if re.match(package,text):
+        pack = cleantext(text)
+        packageData[pack] = {}
+        print(pack)
+    elif re.match(className, text):
         key = cleantext(text)
-        data[key] = {"var": [], "func": []}
+        if pack != "":
+            packageData[pack][key] = {"var": [], "func": []}
     elif re.match(Var, text):
-        if key != "":
-            data[key]["var"].append(cleantext(text))
+        if key != "" and pack !="":
+            packageData[pack][key]["var"].append(cleantext(text))
     elif re.match(Func, text):
-        if key != "":
-            data[key]["func"].append(cleantext(text))
+        if key != "" and pack !="":
+            packageData[pack][key]["func"].append(cleantext(text))
     elif re.match(endClass, text):
-        key = ""
+        if key != "":
+            key = ""
+        else :
+            pack = projectName
+    elif re.match(implement, text):
+        implementListe.append(cleanI(text))
+    elif re.match(extends, text):
+        extendsListe.append(cleanE(text))
+
+
     text = test.readline()
 
-print(data)
-classListe = []
+joinData = {"extends":extendsListe,"implement":implementListe}
+packageFinal = {} 
 
-for classF in data:
-    classListe.append(ClassObject(classF, data[classF]))
-    # alls  = classF.split(' ')
-    # name  = ""
-    # typeD = ""
-    # Spe   = ""
-    # for d in alls:
-    # 	if d in classType:
-    # 		typeD = d
-    # 	elif d in classSpe :
-    # 		Spe   = d
-    # 	else :
-    # 		name = d
-    # classHead = Spe+" "+typeD+" "+name+" {\n\n"
-    # print(classHead)
-    # allVar = ""
-    # security = ""
-    # static   = False
-    # final    = False
-    # lastT    = ""
-    # for var in data[classF]['var']:
-    # 	text = var.split(' ')
-    # 	security = ""
-    # 	static   = False
-    # 	final    = False
-    # 	lastT    = ""
-    # 	for txt in text:
-    # 		if txt in securityType:
-    # 			security = securityType[txt]
-    # 		elif txt == "final":
-    # 			final = True
-    # 		elif txt == "static":
-    # 			static = True
-    # 		else :
-    # 			lastT += " "+txt
-    # 	allVar += "\t"+security+staticD[static]+finalD[final]+lastT+";\n"
-    # # print(allVar)
-    # allFunc = ""
-    # security = ""
-    # static   = False
-    # final    = False
-    # lastT    = ""
-    # types    = ""
-    # com 	 = ""
-    # for func in data[classF]['func']:
-    # 	text = func.split(' ')
-    # 	security = ""
-    # 	static   = False
-    # 	final    = False
-    # 	lastT    = ""
-    # 	types    = ""
-    # 	com 	 = "/**\n\t* def\n\t"
-    # 	for txt in text:
-    # 		if txt in securityType:
-    # 			security = securityType[txt]
-    # 		elif txt == "final":
-    # 			final = True
-    # 		elif txt == "static":
-    # 			static = True
-    # 		elif ":" in txt:
-    # 			txt = txt.split(":")
-    # 			print(txt)
-    # 			types = txt[1]
-    # 			com+= "* @return :"+txt[1]+":\n\t"
-    # 			lastT += " "+txt[0]
-    # 		else :
-    # 			lastT += " "+txt
-    # 		end = "}"
-    # 		if types == "void":
-    # 			end = ";"
-    # 		elif types in typeReturn:
-    # 			end = "{\n\n\t\t"+typeReturn[types]+"\n\t}"
-    # 		else :
-    # 			end = "{\n\n\t\treturn new "+types+";\n\t}"
-    # 	allFunc += "\t"+com+"**/\n\t"+security+staticD[static]+finalD[final]+" "+types+lastT+end+"\n\n"
-    # print(allFunc)
-    # open("javaFile/"+name+".java","w+").write(classHead+allVar+allFunc+"\n}")
+for package in packageData:
+    packageFinal[package] = []
+    for classF in packageData[package]:
+        packageFinal[package].append(ClassObject(classF, packageData[package][classF]))
 
-for classO in classListe:
-    print(classO.toString())
+
+for package in packageFinal:
+    namePack = package.split(space)[1]
+    os.system('mkdir {}/src/{}/{}'.format(fatherRep,projectName,namePack))
+    JointCreator = Join(packageFinal[package],joinData)
+    for classO in packageFinal[package]:
+        head = "package "+projectName+"."+namePack+";"+line*3
+        open(fatherRep+"/src/"+projectName+"/"+namePack+"/"+classO.flag['name']+".java","w").write(head+classO.toString())

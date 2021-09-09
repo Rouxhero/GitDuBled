@@ -17,7 +17,6 @@ class ClassObject:
             "name": "",
             "implement": "",
             "extends": "",
-            "next": "",
         }
         self.var = []
         self.func = []
@@ -51,5 +50,4 @@ class ClassObject:
         funcT = ""
         for func in self.func:
             funcT += func.toString() + line
-
-        return space.join(self.flag.values()) + "{" + line * 2 + varT + line + funcT
+        return space.join(self.flag.values()) + "{" + line * 2 + varT + line + funcT + line + "}"

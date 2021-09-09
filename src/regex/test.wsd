@@ -26,10 +26,10 @@ class Sand{
 
 /'====> definition'/
 
-Resources <|-- Wheat
-Resources <|-- Wood
-Resources <|-- Stone
-Resources <|-- Sand
+Resources *-- Wheat
+Resources *-- Wood
+Resources *-- Stone
+Resources *-- Sand
 /'################################################################################'/
 
 /'################################## Character ##################################'/
@@ -85,6 +85,8 @@ class Player{
 /'############################################################################"'/
 
 /'################################## Board ##################################'/
+package board {
+
 class Board{
 + int nbOfTile
 + int length
@@ -100,7 +102,7 @@ class Tile{
 + Tile(int x, int y)
 + getX():int
 + getY():int
-+ getResourcesOnHarvest(): Resources
++ getResourcesOnHarvest():Resources
 + getUnitsOnTile():int
 }
 class Hills{
@@ -131,10 +133,10 @@ class Desert{
 Board -- Tile
 Tile <|-- Hills
 Tile <|-- Forest
-Tile <|-- Plainea	
+Tile <|-- Plaine	
 Tile <|-- Sea
 Tile <|-- Desert
-
+}
 /'###########################################################################"'/
 /'#################################### Game #################################"'/
 
