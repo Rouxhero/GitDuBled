@@ -1,12 +1,19 @@
 ##!/usr/bin/env python3
 # data file for all var
+import os
 
+if os.name == "posix":
+    separator = '/'
+else:
+    separator = '\\'
+
+    
 # Regex
 # <|-- Implement
 # *--  Extends
 endClass = r"}\n"
-Var = r"(\+|#)\s?[A-Za-z0-9_<>,]+\s(static)?\s?(final)?\s?[A-Za-z0-9_]+\n"
-Func = r"(\+|#)+\s+(\d|\w)+[(]+((\d|\w|\s)*)+?\W+((\d|\w|\s))[^\n]+"
+Var = r"(\+|#)\s?(static)?\s?(final)?\s?[A-Za-z0-9_<>,]+\s[A-Za-z0-9_]+"
+Func = r"(\+|#)\s?(static)?\s?([A-Za-z0-9_<>,]+)?\s[A-Za-z0-9_]+(\([A-Za-z0-9_<>,]*\))?(:[A-Za-z0-9_<>,]+)?"
 implement = r"([A-Za-z0-9]+)\s?(<\|--|--\|>)\s?([A-Za-z0-9]+)\n"
 extends = r"([A-Za-z0-9]+)\s?(\*--|--\*)\s?([A-Za-z0-9]+)\n"
 className = r"((abstract\s+)|(protected\s+))?(class|enum|interface)\s+([A-Z][a-zA-Z_]*)(\s+(extends|implement)\s+([A-Z][a-zA-Z_]*))?(\s|\S)+?"

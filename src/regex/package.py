@@ -20,7 +20,7 @@ class Package :
 
 	def write(self,fatherRep,projectName):
 		if not self.isSubPackge:
-			os.system('mkdir {}/src/{}/{}'.format(fatherRep,projectName,self.name))
+			os.system('mkdir {}{}src{}{}{}{}'.format(fatherRep,separator,separator,projectName,separator,self.name))
 
 		
 

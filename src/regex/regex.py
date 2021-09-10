@@ -6,11 +6,14 @@ from joint import *
 from package import *
 
 
+
+    
+
 fatherRep = input("Directory Name >>> ")
 projectName = input("ProjectName >>> ")
 os.system("mkdir {}".format(fatherRep))
-os.system("mkdir {}/src".format(fatherRep))
-os.system("mkdir {}/src/{}".format(fatherRep,projectName))
+os.system("mkdir {}{}src".format(fatherRep,separator))
+os.system("mkdir {}{}src{}{}".format(fatherRep,separator,separator,projectName))
 wsdPath = input('WSD file path >>> ')
 test = open(wsdPath ,"r")
 text = test.readline()
