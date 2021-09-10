@@ -65,7 +65,7 @@ while text:
 
     text = test.readline()
 
-joinData = {"extends":extendsListe,"implement":implementListe}
+joinData = {"extends":extendsListe,"implements":implementListe}
 packageFinal = []
 
 for package in packageData:

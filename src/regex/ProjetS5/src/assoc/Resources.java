@@ -1,0 +1,8 @@
+package assoc;
+
+
+ interface Resources  {
+
+
+
+}

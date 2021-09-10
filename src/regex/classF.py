@@ -15,7 +15,7 @@ class ClassObject:
             "spec": "",
             "type": "",
             "name": "",
-            "implement": "",
+            "implements": "",
             "extends": "",
         }
         self.var = []
