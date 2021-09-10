@@ -1,14 +1,16 @@
 @startuml
-
-
-
 class Match{
 
 + Match(Competitor c1,Competitor c2)
+
 }
 
 class Competitor{
 # int nbPts
+
++ Competitor(String name)
++ addPts():void
++ getPts():int
 }
 
 package meeting {

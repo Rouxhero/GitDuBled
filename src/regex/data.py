@@ -4,8 +4,10 @@ import os
 
 if os.name == "posix":
     separator = '/'
+    separatorR = r'/'
 else:
     separator = '\\'
+    separatorR = r'\\'
 
     
 # Regex

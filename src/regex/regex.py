@@ -4,16 +4,18 @@ from data import *
 from classF import *
 from joint import *
 from package import *
-
+from tkinter.filedialog import *
 
 
     
-
+path = askdirectory() 
+path = re.sub(r"/", separatorR, path)
 fatherRep = input("Directory Name >>> ")
 projectName = input("ProjectName >>> ")
-os.system("mkdir {}".format(fatherRep))
-os.system("mkdir {}{}src".format(fatherRep,separator))
-os.system("mkdir {}{}src{}{}".format(fatherRep,separator,separator,projectName))
+print("mkdir {}{}".format(path+separator,fatherRep))
+os.system("mkdir {}{}".format(path+separator,fatherRep))
+os.system("mkdir {}{}src".format(path+separator,fatherRep+separator))
+os.system("mkdir {}{}src{}".format(path+separator,fatherRep+separator,separator+projectName))
 wsdPath = input('WSD file path >>> ')
 test = open(wsdPath ,"r")
 text = test.readline()
@@ -81,4 +83,4 @@ for package in packageData:
 
 for package in packageFinal:
     package.joint(joinData)
-    package.write(fatherRep,projectName)
+    package.write(fatherRep,projectName,path)

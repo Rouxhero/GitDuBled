@@ -18,9 +18,9 @@ class Package :
 		JointCreator = Join(self.classData,joinData)
 
 
-	def write(self,fatherRep,projectName):
+	def write(self,fatherRep,projectName,path):
 		if not self.isSubPackge:
-			os.system('mkdir {}{}src{}{}{}{}'.format(fatherRep,separator,separator,projectName,separator,self.name))
+			os.system('mkdir {}{}src{}{}'.format(path+separator,fatherRep+separator,separator+projectName+separator,self.name))
 
 		
 
@@ -28,7 +28,7 @@ class Package :
 		    
 		    if not self.isSubPackge:
 		    	head = "package "+projectName+"."+self.name+";"+line*3
-		    	open(fatherRep+"/src/"+projectName+"/"+self.name+"/"+classO.flag['name']+".java","w").write(head+classO.toString())
+		    	open(path+separator+fatherRep+"/src/"+projectName+"/"+self.name+"/"+classO.flag['name']+".java","w").write(head+classO.toString())
 		    else:	
 		    	head = "package "+projectName+";"+line*3
-		    	open(fatherRep+"/src/"+self.name+"/"+classO.flag['name']+".java","w").write(head+classO.toString())
+		    	open(path+separator+fatherRep+"/src/"+self.name+"/"+classO.flag['name']+".java","w").write(head+classO.toString())
