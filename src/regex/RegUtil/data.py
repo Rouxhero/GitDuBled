@@ -33,3 +33,4 @@ typeReturn = {"int": "return 0;", "String": 'return "";'}
 tab = "\t"
 space = " "
 line = "\n"
+author = "/**\n*\n* @author Leo lvcdb, Adrien G\n*/"

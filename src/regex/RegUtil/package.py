@@ -27,8 +27,8 @@ class Package :
 		for classO in self.classData:
 		    
 		    if not self.isSubPackge:
-		    	head = "package "+projectName+"."+self.name+";"+line*3
+		    	head = "package "+projectName+"."+self.name+";"+line*3+author+line
 		    	open(path+separator+fatherRep+"/src/"+projectName+"/"+self.name+"/"+classO.flag['name']+".java","w").write(head+classO.toString())
 		    else:	
-		    	head = "package "+projectName+";"+line*3
+		    	head = "package "+projectName+";"+line*3+author+line
 		    	open(path+separator+fatherRep+"/src/"+self.name+"/"+classO.flag['name']+".java","w").write(head+classO.toString())
