@@ -41,6 +41,8 @@ class MainPage(tk.Frame):
             "Project Name": self.changeName,
             "Floder Name": self.changeFloder,
             "wsd file": self.changeWsd,
+            "main":self.changeJar,
+            "name":self.changeJarName,
         }
         self.entree = {}
         self.entreeState = {}
@@ -50,14 +52,12 @@ class MainPage(tk.Frame):
 
         # Option Config :
         self.option = {
-            "code": tk.IntVar(),
-            "test": tk.IntVar(),
             "MakeFile": tk.IntVar(),
             "Readme": tk.IntVar(),
         }
         self.fields = {}
         self.MakeFileOption = tk.IntVar()
-        self.jar = {"main": tk.StringVar(),}
+        self.jar = {"main": tk.StringVar(),"name":tk.StringVar()}
         self.optionAsk = tk.LabelFrame(
             self, text="Setting", borderwidth=2, relief=GROOVE
         )
@@ -73,7 +73,7 @@ class MainPage(tk.Frame):
 
 
         # Position
-        self.pos = {"var":0,"option":0,"status":0}
+        self.pos = {"var":0,"option":0,"status":0,"jar":0}
 
 
         # Show all part
@@ -94,10 +94,6 @@ class MainPage(tk.Frame):
         ).grid(row=4, column=1, columnspan=3, sticky="nsew")    
 
     def __setHead(self):
-        # Title
-        tk.Label(self, text="Welcom to UML to Code !").grid(
-            row=0, column=1, sticky="nsew", columnspan=3
-        )
         # For WoaW
         tk.Label(self, text="").grid(row=0, column=1, sticky="nsew")
         tk.Label(self, text="").grid(row=1, column=0, sticky="nsew")
@@ -105,6 +101,10 @@ class MainPage(tk.Frame):
         tk.Label(self, text="").grid(row=3, column=0, sticky="nsew")
         tk.Label(self, text="").grid(row=5, column=0, sticky="nsew")
 
+        # Title
+        tk.Label(self, text="Welcom to UML to Code !").grid(
+            row=0, column=1, sticky="nsew", columnspan=3
+        )
 
     def __setEntry(self):
         for key in defauldName:
@@ -131,7 +131,7 @@ class MainPage(tk.Frame):
                 )
             else:
                 self.entree[key] = [tk.Entry(self.varAsk, width=50, justify="center"),tk.IntVar()]
-                self.entree[key][0].bind('<Return>', self.func[key])
+                self.entree[key][0].bind('<Key>', self.func[key])
                 self.entree[key][0].grid(column=1, row=self.pos['var'])
                 self.entreeState[key] = tk.Checkbutton(
                     self.varAsk,
@@ -201,10 +201,18 @@ class MainPage(tk.Frame):
             self.entree["Project Name"][1].set(1)
             self.var["Project Name"].set(text)
     def changeJar(self,key):
-        text = self.entree["jar"][0].get()
+        text = self.entree["main"][0].get()
         if text != "":
-            self.entree["jar"][1].set(1)
+            self.entree["main"][1].set(1)
             self.jar['main'].set(text)
+
+    def changeJarName(self,key):
+        text = self.entree["name"][0].get()
+        if text != "":
+            self.entree["name"][1].set(1)
+            self.jar['name'].set(text)
+
+
     def changeFloder(self,key):
         text = self.entree["Floder Name"][0].get()
         if text != "":
@@ -224,20 +232,24 @@ class MainPage(tk.Frame):
 
 
     def configJar(self):
-        tk.Label(self.MakeFileConfig, text="Main :").grid(
-                row=1, column=0, sticky="nsew"
+        self.pos['jar'] += 1
+        for key in self.jar :
+            tk.Label(self.MakeFileConfig, text="{}  :".format(key)).grid(
+                row=self.pos['jar'], column=0, sticky="nsew"
             )
-        self.entree["jar"] = [tk.Entry(self.MakeFileConfig, width=20, justify="center"),tk.IntVar()]
-        self.entree["jar"][0].bind('<Return>', self.changeJar)
-        self.entree["jar"][0].grid(column=1, row=1)
-        self.entreeState["jar"] = tk.Checkbutton(
-            self.MakeFileConfig,
-            variable=self.entree["jar"][1],
-            onvalue=1,
-            offvalue=0,
-            state="disabled"
-        ).grid(row=1, column=3, sticky="e")
-
+            self.entree[key] = [tk.Entry(self.MakeFileConfig, width=20, justify="center"),tk.IntVar()]
+            self.entree[key][0].bind('<Key>', self.func[key])
+            self.entree[key][0].grid(column=1, row=self.pos['jar'])
+            self.entreeState[key] = tk.Checkbutton(
+                self.MakeFileConfig,
+                variable=self.entree[key][1],
+                onvalue=1,
+                offvalue=0,
+                state="disabled"
+            ).grid(row=self.pos['jar'], column=3, sticky="w")
+            self.pos['jar'] += 1
+    def openFinal(self):
+        os.system("explorer {}".format(self.var['path']))
     def work(self):
         etat = True
         for key in self.var:
@@ -251,6 +263,17 @@ class MainPage(tk.Frame):
             arg["projectName"] = self.var["Project Name"].get()
             arg["wsdPath"] = self.var["wsd file"].get()
             arg["output"] =   self.status["status"]
+            for option in self.option:
+                if self.option[option].get() == 1:
+                    arg[option] = True
+                else :
+                    arg[option] = False
+            if arg['MakeFile']:
+                if self.MakeFile == 1: 
+                    data = {}
+                    for key in self.jar:
+                        data[key] = self.jar[key].get()
+                    arg['jar'] = option 
             self.status["status"].set("Running")
             try:
                 runRegex(arg)
@@ -261,6 +284,7 @@ class MainPage(tk.Frame):
         if etat:
             self.status["status"].set("Succes")
             self.status["msg"].set("")
+            tk.Button(self,text="Open Folder",command=self.openFinal).grid(row=6,column=1,columnspan=3)
         else:
             self.status["status"].set("Error")
 

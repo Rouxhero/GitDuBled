@@ -5,7 +5,7 @@ from RegUtil.classF import *
 from RegUtil.joint import *
 from RegUtil.package import *
 from tkinter.filedialog import *
-
+from RegUtil.makeFile import *
 
 
 def cleantext(text):
@@ -25,9 +25,12 @@ def cleanE(text):
     return cleantext(text)
 
 
-# arg = {path:str,fatherRep:str,projectName:str,wsdPath:str,code:bool,test:bool,makeFile:bool,jar;dict,readMe:bool}
+# arg = {path:str,fatherRep:str,projectName:str,wsdPath:str,makeFile:bool,jar;dict,readMe:bool}
 
 def runRegex(arg):
+    
+
+
     path = re.sub(r"/", separatorR, arg["path"])
     try:
         os.system("mkdir {}{}".format(path+separator,arg["fatherRep"]))
@@ -41,6 +44,11 @@ def runRegex(arg):
         os.system("mkdir {}{}src{}".format(path+separator,arg["fatherRep"]+separator,separator+arg["projectName"]))
     except Exception as e:
         print(e)
+
+    if arg['MakeFile'] and not arg.get('jar',False):
+        open(path+separator+arg['fatherRep']+separator+"Makefile","w").write(MakeFile(arg['projectName']))
+    elif arg.get('jar',False):
+        open(path+separator+arg['fatherRep']+separator+"Makefile","w").write(MakeFile(arg['projectName'],jar))
     test = open(arg["wsdPath"] ,"r")
     arg['output'].set("Start Uncode")
     text = test.readline()
