@@ -18,6 +18,7 @@
 => var
 => class
 => link
+=> interface graphique
 
 
 ## TODO 
@@ -26,3 +27,5 @@
 => corriger open
 => readme
 => import
+
+=> faire code to teste => Nouvelle class first
