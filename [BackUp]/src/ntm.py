@@ -4,8 +4,8 @@ from time import sleep as pause
 
 pause(5)
 while True:
-	auto.write('casse toi \n')
+	auto.write('yo \n')
 	auto.press('enter')
-	pause(0.05)
+	pause(1)
 	
  

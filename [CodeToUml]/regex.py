@@ -25,17 +25,28 @@ def cleanE(text):
     return cleantext(text)
 
 
+# arg = {path:str,fatherRep:str,projectName:str,wsdPath:str,code:bool,test:bool,makeFile:bool,jar;dict,readMe:bool}
 
-def runRegex(path,fatherRep,projectName,wsdPath):
-    path = re.sub(r"/", separatorR, path)
-    os.system("mkdir {}{}".format(path+separator,fatherRep))
-    os.system("mkdir {}{}src".format(path+separator,fatherRep+separator))
-    os.system("mkdir {}{}src{}".format(path+separator,fatherRep+separator,separator+projectName))
-    test = open(wsdPath ,"r")
+def runRegex(arg):
+    path = re.sub(r"/", separatorR, arg["path"])
+    try:
+        os.system("mkdir {}{}".format(path+separator,arg["fatherRep"]))
+    except Exception as e:
+        print(e)
+    try:
+        os.system("mkdir {}{}src".format(path+separator,arg["fatherRep"]+separator))
+    except Exception as e:
+        print(e)
+    try:
+        os.system("mkdir {}{}src{}".format(path+separator,arg["fatherRep"]+separator,separator+arg["projectName"]))
+    except Exception as e:
+        print(e)
+    test = open(arg["wsdPath"] ,"r")
+    arg['output'].set("Start Uncode")
     text = test.readline()
-    packageData = {projectName:{}}
+    packageData = {arg["projectName"]:{}}
     key = ""
-    pack = projectName
+    pack = arg["projectName"]
     implementListe = []
     extendsListe = []
     while text:
@@ -58,33 +69,33 @@ def runRegex(path,fatherRep,projectName,wsdPath):
             if key != "":
                 key = ""
             else :
-                pack = projectName
+                pack = arg["projectName"]
         elif re.match(implement, text):
             implementListe.append(cleanI(text))
         elif re.match(extends, text):
             extendsListe.append(cleanE(text))
-
-
-    text = test.readline()
-
+        text = test.readline()
+    arg['output'].set("generating pacakge")
     joinData = {"extends":extendsListe,"implements":implementListe}
     packageFinal = []
 
     for package in packageData:
-        thePack = Package(package,package==projectName)
+        thePack = Package(package,package==arg["projectName"])
         for classF in packageData[package]:
             # packageFinal[package].append()
             thePack.addClass(ClassObject(classF, packageData[package][classF]))
         packageFinal.append(thePack)
 
-
+    arg['output'].set("Writing")
     for package in packageFinal:
         package.joint(joinData)
-        package.write(fatherRep,projectName,path)
+        package.write(arg["fatherRep"],arg["projectName"],path)
 
 if __name__ == '__main__':
     path = askdirectory() 
-    fatherRep = input("Directory Name >>> ")
-    projectName = input("ProjectName >>> ")
-    wsdPath = input('WSD file path >>> ')
-    runRegex(path,fatherRep,projectName,wsdPath)
+    arg = {}
+    arg['path'] = path
+    arg["fatherRep"] = input("Directory Name >>> ")
+    arg["projectName"] = input("projectName >>> ")
+    arg["wsdPath"] = input('WSD file path >>> ')
+    runRegex(arg)
