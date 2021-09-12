@@ -8,24 +8,32 @@
 
 ### Docs
 
-=> return
-=> text
+- return
+- text
 
 ### read 
 
-=> package
-=> func
-=> var
-=> class
-=> link
-=> interface graphique
+- package
+- func
+- var
+- class
+- link
+- interface graphique
 
 
 ## TODO 
 
-=> Docs pour argument
-=> corriger open
-=> readme
-=> import
+- Docs pour arguments @param :
+`/**
+	* auto gen docs
+	* @param allCompetitor :List<Competitor>:
+		* 
+	**/
+ 	public    Competition(List<Competitor> allCompetitor) ;`
+- clear les \sb de trop
 
-=> faire code to teste => Nouvelle class first
+- corriger open GUI
+- readme ??
+- import *****
+
+- faire code to teste - Nouvelle class first
