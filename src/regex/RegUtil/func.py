@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # classF file for Function Object
-from data import *
+from RegUtil.data import *
 
 
 class Function:

@@ -1,7 +1,7 @@
 # #!/usr/bin/env python3
 # file for âckage class
-from data import *
-from joint import *
+from RegUtil.data import *
+from RegUtil.joint import *
 import os
 class Package :
 

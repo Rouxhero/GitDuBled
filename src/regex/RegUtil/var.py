@@ -1,6 +1,6 @@
 ##!/usr/bin/env python3
 # classF file for Variable Object
-from data import *
+from RegUtil.data import *
 
 
 class Variable:

@@ -19,7 +19,7 @@ Func = r"(\+|#)\s?(static)?\s?([A-Za-z0-9_<>,]+)?\s[A-Za-z0-9_]+(\([A-Za-z0-9_<>
 implement = r"([A-Za-z0-9]+)\s?(<\|--|--\|>)\s?([A-Za-z0-9]+)\n"
 extends = r"([A-Za-z0-9]+)\s?(\*--|--\*)\s?([A-Za-z0-9]+)\n"
 className = r"((abstract\s+)|(protected\s+))?(class|enum|interface)\s+([A-Z][a-zA-Z_]*)(\s+(extends|implement)\s+([A-Z][a-zA-Z_]*))?(\s|\S)+?"
-package = r'package\s([a-zA-Z_])+\s?\{'
+packageR = r'package\s([a-zA-Z_])+\s?\{'
 
 # Var Type
 

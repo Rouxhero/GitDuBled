@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Class for all joint betewn all class
-from  data import *
+from  RegUtil.data import *
 class Join :
 
 	def __init__(self,classData : list ,jointData : dict):

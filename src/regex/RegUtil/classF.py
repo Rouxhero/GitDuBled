@@ -1,8 +1,8 @@
 ##!/usr/bin/env python3
 # File for classObject
-from data import *
-from var import *
-from func import *
+from RegUtil.data import *
+from RegUtil.var import *
+from RegUtil.func import *
 
 # Class for classObject
 
