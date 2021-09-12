@@ -1,6 +1,6 @@
 import pyautogui as auto
 from time import sleep as pause
-
+#mdrrr
 
 pause(5)
 while True:
