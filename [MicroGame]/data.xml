@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="object" >
+	<item name="box">
+		<img>item/box1.png</img>
+		<img>item/box2.png</img>
+		<data colide="True"
+			  breack="True"
+			  hit="10"
+			  hitbox="10x10"
+		/>
+
+	</item>
+	<item name="baril">
+		<img>item/baril1.png</img>
+		<img>item/baril2.png</img>
+		<data colide="True"
+			  breack="True"
+			  explode="True"
+			  refuile="500"
+			  hit="10"
+			  hitbox="10x10"
+		/>
+	</item>
+	<item name="Explosive_baril">
+		<img>item/baril1.png</img>
+		<img>item/baril2.png</img>
+		<data colide="True"
+			  breack="True"
+			  explode="True"
+			  hit="400"
+			  hitbox="10x10"
+		/>
+	</item>
+
+
+</package>

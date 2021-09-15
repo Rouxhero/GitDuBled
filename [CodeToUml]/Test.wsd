@@ -1,0 +1,42 @@
+@startuml
+
+
+
+class Match{
+
++ Match(Competitor c1 , Competitor c2)
+}
+
+class Competitor{
+# int nbPts
+}
+
+package meeting {
+
+abstract class Competition{
+
+# Match match
+# final List<Competitor> competitors
++ Competition(List<Competitor> competitors)
++ play():void
+# play(List<Competitor> competitors):void
+# playMatch(Competitor c1 , Competitor c2):void
++ ranking():Map<Competitor,Integer>
+
+}
+
+class League{
+
++ League()
+
+}
+class Tournement{
+
++ Tournement()
+
+}
+
+Competition <|-- Tournement
+Competition <|-- League
+}
+@enduml

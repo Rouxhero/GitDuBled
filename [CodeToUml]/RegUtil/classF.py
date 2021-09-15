@@ -25,6 +25,7 @@ class ClassObject:
         self.__configFunction()
 
     def __configClass(self):
+        print(tab*3+'Config name')
         data = self.head.split(space)
         for text in data:
             if text in classType:
@@ -37,6 +38,7 @@ class ClassObject:
     def __configVariable(self):
         for var in self.data["var"]:
             self.var.append(Variable(var))
+            print(tab*3+'var :'+self.var[-1].flag['text'])
 
     def __configFunction(self):
         for func in self.data["func"]:
@@ -50,4 +52,13 @@ class ClassObject:
         funcT = ""
         for func in self.func:
             funcT += func.toString() + line
-        return space.join(self.flag.values()) + "{" + line * 2 + varT + line + funcT + line + "}"
+        return (
+            space.join(self.flag.values())
+            + "{"
+            + line * 2
+            + varT
+            + line
+            + funcT
+            + line
+            + "}"
+        )

@@ -19,9 +19,7 @@
 - class
 - link
 - interface graphique
-
-
-## TODO 
+- Dossier Check
 
 - Docs pour arguments @param :
 `/**
@@ -30,9 +28,14 @@
 		* 
 	**/
  	public    Competition(List<Competitor> allCompetitor) ;`
-- clear les \sb de trop
+- auto gen docs -> insert text
+- clear les \s de trop
 
-- corriger open GUI
+
+
+## TODO 
+
+- corriger open GUI linux : /usr/bin/thunar ~
 - readme ??
 - import *****
 

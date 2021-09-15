@@ -1,6 +1,6 @@
 # #!/usr/bin/env python3
 
-MakeFileJar = lambda jar,projectName :"""
+MakeFileJar = lambda jar, projectName: """
 PROJECT={}
 
 BUILD=javac
@@ -25,13 +25,15 @@ doc:
 	$(DOCS) -d $(DOC) $(FILE)
 
 clean:
-	rm -rf $(OUT)""".format(projectName,jar['name'],jar['main'])
+	rm -rf $(OUT)""".format(
+    projectName, jar["name"], jar["main"]
+)
 
 
-def MakeFile(projectName,jar=False):
+def MakeFile(projectName, jar=False):
 
-	if not jar :
-		return """
+    if not jar:
+        return """
 PROJECT={}
 
 BUILD=javac
@@ -50,6 +52,8 @@ doc:
 	$(DOCS) -d $(DOC) $(FILE)
 
 clean:
-	rm -rf $(OUT)""".format(projectName)
-	else :
-		return MakeFileJar(jar,projectName) 
+	rm -rf $(OUT)""".format(
+            projectName
+        )
+    else:
+        return MakeFileJar(jar, projectName)

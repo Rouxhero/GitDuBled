@@ -23,4 +23,4 @@ class Variable:
                 self.flag["text"] += " " + data
 
     def toString(self):
-        return tab+space.join(self.flag.values()) + ";" + line
+        return tab + space.join(self.flag.values()) + ";" + line
