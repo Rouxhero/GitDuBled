@@ -1,62 +1,49 @@
 from util.Function import * 			
+from random import choice
 
 
-class Wall :
 
-	def __init__(self,coord:tuple,size:tuple,map):
-		self.pos = coord
+class ObjectRPG :
+
+	def __init__(self,coord:tuple,size:tuple,maps):
+		self.pos = (coord[0]*size[0],coord[1]*size[1])
 		self.size = size
-		if coord == (0,0):
-			self.img = PyImgLoad('../img/Wall/wall2.png',size)
-		else :
-			self.img = PyImgLoad('../img/Wall/wall1.png',size)
+		self.maps = maps
+
 
 	def show(self,display):
 		display.blit(self.img,self.pos)
 
 
-class Ground :
+class Wall(ObjectRPG):
 
-	def __init__(self,coord:tuple,size:tuple,map):
-		self.pos = coord
-		self.size = size
+	def __init__(self,coord:tuple,size:tuple,maps):
+		super(Wall, self).__init__(coord,size,maps)
+		self.img = PyImgLoad('../img/Wall/wall1.png',size)
+
+
+class Ground(ObjectRPG):
+
+
+	def __init__(self,coord:tuple,size:tuple,maps):
+		super(Ground, self).__init__(coord,size,maps)
 		self.img = []
 		for x in range(1,4):
 			self.img.append(PyImgLoad('../img/ground/ground{}.png'.format(x),size))
+		self.img = self.img[0]
 
-	def show(self,display):
-		display.blit(self.img[0],self.pos)
+class Tree(ObjectRPG) :
 
-
-class Tree :
-
-	def __init__(self,coord:tuple,size:tuple,map):
-		self.pos = coord
-		self.size = size
+	def __init__(self,coord:tuple,size:tuple,maps):
+		super(Tree, self).__init__(coord,size,maps)
 		self.img = []
 		for x in range(1,3):
 			self.img.append(PyImgLoad('../img/tree/tree{}.png'.format(x),size))
+		self.img = self.img[0]
 
+class Water(ObjectRPG) :
 
+	def __init__(self,coord:tuple,size:tuple,maps,dirs:int):
+		super(Water, self).__init__(coord,size,maps)
+		self.img = PyImgLoad('../img/water/water{}.png'.format(dirs+1),size)
 
-
-	def show(self,display):
-		display.blit(self.img[0],self.pos)
-
-
-
-class Water :
-
-	def __init__(self,coord:tuple,size:tuple,map,dirs:int):
-		self.pos = coord
-		self.size = size
-		self.img = []
-		for x in range(1,3):
-			self.img.append(PyImgLoad('../img/tree/tree{}.png'.format(x),size))
-		self.dir = dirs
-
-
-
-
-	def show(self,display):
-		display.blit(self.img[self.dir],self.pos)
