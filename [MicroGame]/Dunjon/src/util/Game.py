@@ -1,10 +1,11 @@
 from util.Function import *
-
+from util.Map import *
 
 class Game :
 
 	def __init__(self,size):
 		self.size = size
+		self.actualMap = Map(size)
 		pygame.init()
 		self.display = pygame.display.set_mode(size)
 		self.object = []
@@ -16,5 +17,6 @@ class Game :
  
 
 	def show(self):
-		for element in self.object:
-			element.show(self.display)
+		for y in self.actualMap.map:
+			for x in y:
+				x.show(self.display)
