@@ -6,6 +6,7 @@ from random import choice
 class ObjectRPG :
 
 	def __init__(self,coord:tuple,size:tuple,maps):
+		coord = coord.get()
 		self.pos = (coord[0]*size[0],coord[1]*size[1])
 		self.size = size
 		self.maps = maps
@@ -41,9 +42,25 @@ class Tree(ObjectRPG) :
 			self.img.append(PyImgLoad('../img/tree/tree{}.png'.format(x),size))
 		self.img = self.img[0]
 
+
+# Dir = [1..7]
 class Water(ObjectRPG) :
 
 	def __init__(self,coord:tuple,size:tuple,maps,dirs:int):
 		super(Water, self).__init__(coord,size,maps)
 		self.img = PyImgLoad('../img/water/water{}.png'.format(dirs+1),size)
 
+
+
+class Position :
+
+	def __init__(self,x,y):
+		self.x = x
+		self.y = y
+
+	def move(self,x=0,y=0):
+		self.x += x
+		self.y += y
+
+	def get(self):
+		return (self.x,self.y)

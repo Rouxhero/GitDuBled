@@ -1,6 +1,6 @@
 from util.Function import *
 from util.Object import *
-from util.Game import *
+from util.Game import *	
 
 
 game = Game((900,600))

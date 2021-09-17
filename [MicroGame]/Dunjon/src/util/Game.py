@@ -8,6 +8,7 @@ class Game :
 		self.actualMap = Map(size)
 		pygame.init()
 		self.display = pygame.display.set_mode(size)
+		self.actualMap.generateMap(self.display)
 		self.object = []
 		self.play = True
 
