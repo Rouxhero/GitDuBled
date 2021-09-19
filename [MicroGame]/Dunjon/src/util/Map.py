@@ -42,8 +42,11 @@ class Map :
 		pygame.display.update()
 
 		for x in range(r(1,2)):
-			self.element.append(River(self,tileSize))
-		print("Tree")
+			river = River(self,tileSize)
+			while not river.ok:
+				river = River(self,tileSize)
+			river.validePos()
+			self.element.append(river)
 		for nb in range(r(15,20)):
 
 			x = r(0,self.width-1)
@@ -66,7 +69,6 @@ class Map :
 					self.addTile(Tree(pos,tileSize,self),pos)
 					self.mapGet(x,y).show(display)
 					pygame.display.update()
-			print("Tree {} done".format(nb))
 		
 	def mapGet(self,x,y):
 		return self.map[x][y]

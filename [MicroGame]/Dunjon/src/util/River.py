@@ -7,6 +7,8 @@ class River :
 		self.maps = maps
 		self.tileSize = tileSize
 		self.element = []
+		self.trys = 0
+		self.ok = False
 		self.__generateRiver()
 
 
@@ -16,11 +18,8 @@ class River :
 		pos.move(NONE,UP)
 		if self.maps.containe(pos) :
 			pos.move(size*dirs)
-			print('ok for First pos')
 			if self.maps.containe(pos) :
 				pos.move(-size*dirs)
-				print('ok for second pos')
-				print(type(self.maps.mapGetT(self.start)))
 				if type(self.maps.mapGetT(self.start)) == Ground :
 					pos.move(NONE,DOWN)
 					return True
@@ -57,9 +56,11 @@ class River :
 		self.__AddTile(self.start,0)
 
 	def __AddTile(self,pos,key=1):
-		water = Water(pos,self.tileSize,self,key)
+		water = Water(pos.copy(),self.tileSize,self,key)
 		self.element.append(water)
-		self.maps.addTile(water,pos)
+	def validePos(self):
+		for el in self.element:
+			self.maps.addTile(el,el.coord)
 
 	def __generateRiver(self):
 		self.start =Position(r(1,self.maps.width-1),self.maps.height-1)	
@@ -67,11 +68,11 @@ class River :
 		if self.__checkPos(self.start,1) :
 			self.start.move(NONE,DOWN)
 			self.__foward()
-		while self.start.get()[1] > 0 :
+		while self.start.get()[1] > 0 and self.trys < 150 :
 			# import ipdb; ipdb.set_trace()
 			# state : 1 = | | 2 = <- 3 = ->
 			choix = r(0,100)
-			print(self.start.get(),choix)
+			
 			if choix < 50 :
 				if self.__checkPos(self.start,1):
 					self.__foward()	
@@ -83,6 +84,11 @@ class River :
 				else :
 					if self.__checkPos(self.start,2,RIGHT):
 						self.__right()	
+			self.trys +=1
+		if self.trys >= 150 :
+			self.ok = False
+		else :
+			self.ok = True
 
 
 						

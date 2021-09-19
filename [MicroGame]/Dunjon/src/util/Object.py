@@ -6,6 +6,7 @@ from random import choice
 class ObjectRPG :
 
 	def __init__(self,coord:tuple,size:tuple,maps):
+		self.coord = coord
 		coord = coord.get()
 		self.pos = (coord[0]*size[0],coord[1]*size[1])
 		self.size = size
@@ -61,6 +62,9 @@ class Position :
 	def move(self,x=0,y=0):
 		self.x += x
 		self.y += y
+
+	def copy(self):
+		return Position(self.x,self.y)
 
 	def get(self):
 		return (self.x,self.y)

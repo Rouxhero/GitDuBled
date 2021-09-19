@@ -17,6 +17,11 @@ class Game :
 		self.play = False
  
 
+	def reloadMap(self):
+ 		self.actualMap = Map(self.size)
+ 		self.display.fill((0,0,0))
+ 		self.actualMap.generateMap(self.display)
+
 	def show(self):
 		for y in self.actualMap.map:
 			for x in y:
