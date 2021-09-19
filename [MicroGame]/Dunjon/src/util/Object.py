@@ -1,5 +1,6 @@
 from util.Function import * 			
 from random import choice
+from random import randint as r
 
 
 
@@ -32,7 +33,13 @@ class Ground(ObjectRPG):
 		self.img = []
 		for x in range(1,4):
 			self.img.append(PyImgLoad('../img/ground/ground{}.png'.format(x),size))
-		self.img = self.img[0]
+		choix = r(0,100)
+		if choix > 97:
+			self.img = self.img[1]
+		elif choix < 6:
+			self.img = self.img[2]
+		else :
+			self.img = self.img[0]
 
 class Tree(ObjectRPG) :
 
