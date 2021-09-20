@@ -19,6 +19,8 @@ while game.play:
 				game.player.move(LEFT)
 			if event.key == K_RIGHT:
 				game.player.move(RIGHT)
+			if event.key == K_RETURN:
+				game.player.hit() 
 
 	game.show()
 	pygame.display.update()
