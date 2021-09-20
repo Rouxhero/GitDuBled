@@ -58,6 +58,8 @@ class River :
 	def __AddTile(self,pos,key=1):
 		water = Water(pos.copy(),self.tileSize,self,key)
 		self.element.append(water)
+
+		
 	def validePos(self):
 		for el in self.element:
 			self.maps.addTile(el,el.coord)

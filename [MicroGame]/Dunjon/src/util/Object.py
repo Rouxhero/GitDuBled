@@ -6,7 +6,7 @@ from random import randint as r
 
 class ObjectRPG :
 
-	def __init__(self,coord:tuple,size:tuple,maps):
+	def __init__(self,coord,size:tuple,maps):
 		self.coord = coord
 		coord = coord.get()
 		self.pos = (coord[0]*size[0],coord[1]*size[1])
