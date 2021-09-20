@@ -2,7 +2,7 @@ from util.Function import *
 from util.Object import *
 from util.River import *
 from random import randint as r
-tileSize = (20,20)
+
 
 def checkPos(maps,typeTile,x,y):
 	# print("test for {} at {},{}".format(typeTile,x,y))
@@ -22,8 +22,10 @@ def checkPos(maps,typeTile,x,y):
 class Map :
 
 	def __init__(self,size:float):
-		self.width  = size[0]//tileSize[0]
-		self.height = size[1]//tileSize[1]
+		self.width  = 30
+		self.height = 30
+		self.tileSize = (size[0]//30,size[1]//30)
+		print(self.tileSize,self.height)
 		self.size = size
 		self.element = []
 		self.map = list(list(0 for x in range(self.height)) for y in range(self.width))
@@ -42,9 +44,9 @@ class Map :
 		pygame.display.update()
 
 		for x in range(r(1,2)):
-			river = River(self,tileSize)
+			river = River(self,self.tileSize)
 			while not river.ok:
-				river = River(self,tileSize)
+				river = River(self,self.tileSize)
 			river.validePos()
 			self.element.append(river)
 		for nb in range(r(15,20)):
@@ -55,7 +57,7 @@ class Map :
 				x = r(0,self.width-1)
 				y = r(0,self.height-1)
 			pos = Position(x,y)
-			self.addTile(Tree(pos,tileSize,self),pos)
+			self.addTile(Tree(pos,self.tileSize,self),pos)
 			self.mapGet(x,y).show(display)
 			pygame.display.update()
 			nbOther = r(15,20)
@@ -66,12 +68,20 @@ class Map :
 				if checkPos(self.map,Tree,x,y):
 					ind += 1
 					pos = Position(x,y)
-					self.addTile(Tree(pos,tileSize,self),pos)
+					self.addTile(Tree(pos,self.tileSize,self),pos)
 					self.mapGet(x,y).show(display)
 					pygame.display.update()
+		for x in range(4):
+			for y in range(4):
+				pos = Position(x,y)
+				self.addTile(Ground(pos,self.tileSize,self),pos)
 		
 	def mapGet(self,x,y):
-		return self.map[x][y]
+		try :
+			return self.map[x][y]
+		except Exception as e:
+			print(x,y,e)
+			return False
 
 	def mapGetT(self,pos):
 		try :
@@ -85,7 +95,7 @@ class Map :
 		for x in range(len(self.map)):
 			for y in range(len(self.map[0])):
 				pos = Position(x,y)
-				self.addTile(Ground(pos,tileSize,self),pos)
+				self.addTile(Ground(pos,self.tileSize,self),pos)
 
 	
 
