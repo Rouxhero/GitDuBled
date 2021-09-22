@@ -1,5 +1,5 @@
 from util.Function import *
-from util.Object import *
+from map.Object import *
 from util.Game import *	
 
 

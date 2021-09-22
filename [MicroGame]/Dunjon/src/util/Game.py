@@ -1,6 +1,6 @@
 from util.Function import *
-from util.Map import *
-from util.player import *
+from map.Map import *
+from player.player import *
 class Game :
 
 	def __init__(self,size):
