@@ -3,7 +3,7 @@ from map.Function import *
 from map.Object import *
 from map.River import *
 from random import randint as r
-
+import numpy as np
 
 
 
@@ -15,8 +15,8 @@ class Map :
 		self.displaySize = size
 		self.centerPos = Position(150,150)
 		self.tileSize = (size[0]//self.size[0],size[1]//self.size[0])
-		self.ground = []
-		self.cover  = []
+		self.ground = np.zero(self.fullSize)
+		self.cover  = np.zero(self.fullSize)
 
 	def contain(self,pos):
 		pos = pos.get()
@@ -53,8 +53,6 @@ class Map :
 				y = r(0,self.fullSize[1]-1)
 			pos = Position(x,y)
 			self.addTile(Tree(pos,self.tileSize,self),pos)
-			self.mapGet(x,y).show(display)
-			pygame.display.update()
 			nbOther = r(15,20)
 			ind = 0
 			while ind < nbOther:
@@ -64,5 +62,5 @@ class Map :
 					ind += 1
 					pos = Position(x,y)
 					self.addTile(Tree(pos,self.tileSize,self),pos)
-					self.mapGet(x,y).show(display)
-					pygame.display.update()
+					
+					

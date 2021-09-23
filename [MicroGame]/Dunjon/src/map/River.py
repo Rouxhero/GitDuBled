@@ -1,13 +1,13 @@
-from src.util.Function import *
-from src.map.Object import *
+from util.Function import *
+from map.Object import *
 from random import randint as r
 
 
 class River:
 
-    def __init__(self, maps, tileSize):
+    def __init__(self, maps):
         self.maps = maps
-        self.tileSize = tileSize
+        self.tileSize = maps.tileSize
         self.element = []
         self.trys = 0
         self.ok = False

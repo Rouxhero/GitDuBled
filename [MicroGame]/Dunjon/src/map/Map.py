@@ -22,7 +22,7 @@ class Map :
 	def containe(self,pos):
 		pos = pos.get()
 		return pos[0] >= 0 and pos[0] < self.width and pos[1] >= 0 and pos[1] < self.height
-		
+
 	def addTile(self,tile,pos):
 		pos = pos.get()
 		self.map[pos[0]][pos[1]] = tile
@@ -33,9 +33,9 @@ class Map :
 		pygame.display.update()
 
 		for x in range(r(1,2)):
-			river = River(self,self.tileSize)
+			river = River(self)
 			while not river.ok:
-				river = River(self,self.tileSize)
+				river = River(self)
 			river.validePos()
 			self.element.append(river)
 		for nb in range(r(15,20)):
