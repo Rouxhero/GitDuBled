@@ -18,7 +18,7 @@ def clearSpace(text):
 # *--  Extends
 endClass = r"}\n"
 Var = r"^\t*(\+|#|-)\s?(static)?\s?(final)?\s?[A-Za-z0-9_<>,\[\]]*\s[A-Za-z0-9_]+\n?$"
-Func = r"^\t*(\+|#\-)\s?(static)?\s?([A-Za-z0-9_<>,]+)?\s[A-Za-z0-9_]+\([A-Za-z0-9_<>,]*\)(:[A-Za-z0-9_<>,]+)?"
+Func = r"^\t*(\+|#|-)\s?(static)?\s?([A-Za-z0-9_<>,]+)?\s[A-Za-z0-9_]+\([A-Za-z0-9_<>,]*\)(:[A-Za-z0-9_<>,]+)?"
 implement = r"^\t*([A-Za-z0-9]+)\s?(<\|--|--\|>)\s?([A-Za-z0-9]+)\n"
 extends = r"^\t*([A-Za-z0-9]+)\s?(\*--|--\*)\s?([A-Za-z0-9]+)\n"
 className = r"^\t*((abstract\s+)|(protected\s+))?(class|enum|interface)\s+([A-Z][a-zA-Z_]*)(\s+(extends|implement)\s+([A-Z][a-zA-Z_]*))?(\s|\S)+?"
