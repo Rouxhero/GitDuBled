@@ -1,4 +1,6 @@
-
+from util.Function import *
+from map.Object import *
+from util.Game import *	
 
 
 game = Game((600,600))

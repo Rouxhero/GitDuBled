@@ -16,7 +16,7 @@ class Map :
 	def show(self,display):
 		for y in self.ground:
 			for x in y :
-				tile[x].show(display)
+				self.pygameData['display'].blit(
 		for y in self.cover:
 			for x in y :
 				tile[x].show(display)
