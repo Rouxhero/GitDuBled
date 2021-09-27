@@ -11,6 +11,6 @@ public class {}Test
 """.format(package,className)
 
 
-funcR = r'(protected|public|private)\s?([\w][\w]*)?\s([\w][\w]*)(\(([\w]+\s[\w]+,?\s?)*\))'
+funcR = r'^\t*(protected|public|private)\s?([\w][\w<>\[\]]*)?\s([\w][\w]*)(\(([\w]+\s[\w]+,?\s?)*\))\s?{$'
 
 

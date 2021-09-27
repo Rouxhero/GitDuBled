@@ -25,11 +25,11 @@ x = (0, 0)
 y = (0, 200)
 path = [x,y]
 path = cleanList(pasDrag([x,y]))
-for x in range(10):
-	path = cleanList(pasDrag(path))
+for x in range(1):
+	path = pasDrag(path)
 print(path)
 for coord in path :
 	t.goto(coord)
-pause(10)
+pause(1)
 # t.setpos(0,0)
 # t.clear()
