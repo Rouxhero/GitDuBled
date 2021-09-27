@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from util import *
+from map import *
 import os
 from time import sleep as pause
 separator = '/'
@@ -20,7 +21,8 @@ class Game :
 		self.pygameData = {
 
 			"display":pygame.display.set_mode(self.getArg("screenSize")),
-			"clock":pygame.time.Clock()
+			"clock":pygame.time.Clock(),
+			"continu":True
 		}
 		self.font = {
 
@@ -30,6 +32,7 @@ class Game :
 		self.pygameData['clock'].tick(self.getArg("tikspeed")[0])
 		self.img = {}
 		self.__loadImg()
+		self.map = Map(self)
 		# MEnu
 		# Map
 
@@ -41,25 +44,38 @@ class Game :
 		self.data[key] = 'x'.join(maps(data,str))
 
 	def __loadImg(self):
-		
 		for path, dirs, files in os.walk("../../img/"):
 			for file in files:
 				self.pygameData['display'].fill((6,6,6))
-				# pause(0.008)
+				# pause(0.08)
 				name = path+separator+file
 				pack = name.split("img")[1].split('/')[1]
+				fileName = name.split("img")[1].split('/')[-1]
 				self.pygameData['display'].blit(PyPrint("Loading img : {}".format(pack),(255,10,10),self.font['load']),(220,280))
 				if pack in self.img :
-					self.img[pack].append(PyImgLoad(name,self.getArg("TileSize")))
+					self.img[pack][fileName] = PyImgLoad(name,self.getArg("TileSize"))
 				else :
-					self.img[pack] = [PyImgLoad(name,self.getArg("TileSize")),]
-				self.pygameData['display'].blit(self.img[pack][-1],(280,320))
+					self.img[pack] = {}
+					self.img[pack][fileName] = PyImgLoad(name,self.getArg("TileSize"))
+				self.pygameData['display'].blit(self.img[pack][fileName],(280,320))
 				pygame.display.update()
+		print(self.img)
+		
+	def over(self):
+		self.pygameData['continu'] = False
 
 
 
 if __name__ == '__main__':
 	game = Game()
-	print(game.getArg("fullTile"))
-	# game.setArg("Test",[150,150])
-	print(game.getArg("Test"))
+	while game.pygameData['continu']:
+		for event in pygame.event.get():
+			# Close if the user quits the game
+			if event.type == QUIT:
+				game.over()
+		game.map.show(game.pygameData["display"])
+		pygame.display.update()
+
+	# print(game.getArg("tikspeed"))
+	# game.setArg("tikspeed",[60])
+	# print(game.getArg("tikspeed"))

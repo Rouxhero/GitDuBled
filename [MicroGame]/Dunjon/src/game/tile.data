@@ -1,0 +1,7 @@
+#pack;id;name;file;break;
+ground;0;ground;ground1.png;false;
+ground;1;grass;ground2.png;true;
+ground;2;path;ground3.png;false;
+tree;3;oak;tree1.png;true;
+tree;4;litle_tree;tree2.png;true;
+tree;5;dead_tree;tree3.png;true;
