@@ -4,7 +4,7 @@ package board{
 abstract class Board{
 # Tile[][] board
 # List<Tile> allGround
-+ Board(int witdh, int height):void
++ Board(int witdh , int height)
 + getNbOfTile(int nbFirstTile):int
 + getHeight():int
 + getWitdh():int
@@ -12,32 +12,32 @@ abstract class Board{
 - genertateOcean():void
 - generateFirstTile():void
 - generateOtherTiles(int nbOfTile):void
-- checkValidity(int posX, int posY):boolean
-- createTile(int nb, int x, int y):Tile
+- checkValidity(int posX , int posY):boolean
+- createTile(int nb , int x , int y):Tile
 + getAllFreeGround():List<Tile>
 + removeOccupedGround(Tile tile):void
 + getBoardStatus():int
 + showBoard():String
 - generateHead(int widht):String
 - getStr(int y):String
-+ getTile(int x, int y):Tile
++ getTile(int x , int y):Tile
 + getOtherTile(Tile tile):List<Tile>
 }
 class EndGameByBoard{
 + EndGameByBoard():void
 }
 class FarmBoard{
-+ FarmBoard(int witdh, int height):void
++ FarmBoard(int witdh , int height):void
 }
 class WarBoard{
-+ WarBoard(int witdh, int height):void
++ WarBoard(int witdh , int height):void
 }
 }
 package character{
 class Army{
 # int size
 # int MAX_SIZE
-+ Army(Tile position, Player owner, int size):void
++ Army(Tile position , Player owner , int size):void
 + getSize():int
 + numberUnitsClaimed():int
 + meet(Army other):String
@@ -53,7 +53,7 @@ abstract class Character{
 # int gold
 # Player owner
 # Tile position
-+ Character(Tile position, Player owner):void
++ Character(Tile position , Player owner):void
 + setTile(Tile newTile):void
 + getGold():int
 + getTile():Tile
@@ -68,14 +68,14 @@ class CharacterException{
 + CharacterException():void
 }
 class Worker{
-+ Worker(Tile position, Player owner):void
++ Worker(Tile position , Player owner):void
 + receiveReward(int i):void
 }
 }
 package gamemode{
 class FarmGame{
-+ FarmGame(int width, int height, int nbRound):void
-+ playOneRound(Player thePlayer, boolean isRandom):String
++ FarmGame(int width , int height , int nbRound):void
++ playOneRound(Player thePlayer , boolean isRandom):String
 + randomFirstAction(Player thePlayer):String
 }
 abstract class Game{
@@ -91,16 +91,16 @@ abstract class Game{
 + play():String
 }
 class WarGame{
-+ WarGame(int width, int height, int nbRound):void
-+ playOneRound(Player thePlayer, boolean isRandom):String
++ WarGame(int width , int height , int nbRound):void
++ playOneRound(Player thePlayer , boolean isRandom):String
 + randomFirstAction(Player thePlayer):String
 }
 }
 package player{
 class FarmPlayer{
-+ FarmPlayer(String name, Board board, boolean isRandom):void
++ FarmPlayer(String name , Board board , boolean isRandom):void
 + doNothing():String
-+ deployCharact(int size, int x, int y):String
++ deployCharact(int size , int x , int y):String
 + getPoint():int
 }
 abstract class Player{
@@ -110,7 +110,7 @@ abstract class Player{
 # int reward
 # String name
 # Board theboard
-+ Player(String name, int reward, Board board, boolean isRandom):void
++ Player(String name , int reward , Board board , boolean isRandom):void
 + looseChar(Character character):void
 + earnChar(Character character):void
 + harvestTile():String
@@ -137,10 +137,10 @@ class PlayerException{
 class WarPlayer{
 - int gold
 - int nbSoldier
-+ WarPlayer(String name, Board board, boolean isRandom):void
++ WarPlayer(String name , Board board , boolean isRandom):void
 + looseChar(Character character):void
 + getNbSoldier():int
-+ deployCharact(int size, int x, int y):String
++ deployCharact(int size , int x , int y):String
 + getGold():int
 + getPoint():int
 }
@@ -152,7 +152,7 @@ class Desert{
 # static int SIZE_COEF
 # static int MAX_SIZE
 # static int END_REWARD
-+ Desert(int x, int y):void
++ Desert(int x , int y):void
 + getEndCoef():int
 + getMaxSize():int
 + getSizeCoef():int
@@ -166,7 +166,7 @@ class Forest{
 # static int SIZE_COEF
 # static int MAX_SIZE
 # static int END_REWARD
-+ Forest(int x, int y):void
++ Forest(int x , int y):void
 + getEndCoef():int
 + getMaxSize():int
 + getSizeCoef():int
@@ -180,7 +180,7 @@ class Hills{
 # static int SIZE_COEF
 # static int MAX_SIZE
 # static int END_REWARD
-+ Hills(int x, int y):void
++ Hills(int x , int y):void
 + getEndCoef():int
 + getMaxSize():int
 + getSizeCoef():int
@@ -194,7 +194,7 @@ class Plain{
 # static int SIZE_COEF
 # static int MAX_SIZE
 # static int END_REWARD
-+ Plain(int x, int y):void
++ Plain(int x , int y):void
 + getEndCoef():int
 + getMaxSize():int
 + getSizeCoef():int
@@ -204,7 +204,7 @@ class Plain{
 }
 class Sea{
 # static String STRING_PICT
-+ Sea(int x, int y):void
++ Sea(int x , int y):void
 + getEndCoef():int
 + getRewardCoef():int
 + getSizeCoef():int
@@ -219,7 +219,7 @@ abstract class Tile{
 # String STRING_PICT
 # boolean isEmpty
 # Character user
-+ Tile(int x, int y):void
++ Tile(int x , int y):void
 + getX():int
 + getY():int
 + isEmpty():boolean
