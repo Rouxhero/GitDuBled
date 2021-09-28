@@ -3,6 +3,7 @@ import tkinter.ttk as tkk
 from tkinter.filedialog import *
 from interface.entry import *
 from regex import *
+from interface.uml import *
 import re
 
 
@@ -325,4 +326,4 @@ class MainPage(tk.Frame):
             self.fields['status'].config(bg="red")
 
 
-FramesList = (MainPage,)
+FramesList = (MainPage,UmlPage)

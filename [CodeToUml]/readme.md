@@ -13,11 +13,11 @@
 		[#|+|-] [static] [final] <Vartype> <Varname>
 		[#|+|-] [static] [final] <Funcname>(<argType> <argName> , <..>)[:<return>]
 	}
-	[abstract]<class2>{
+	[abstract]<enum1>{
 		[#|+|-] [static] [final] <Vartype> <Varname>
 		[#|+|-] [static] [final] <Funcname>(<argType> <argName> , <..>)[:<return>]
 	}
-	[abstract]<class3>{
+	[abstract]<interface>{
 		[#|+|-] [static] [final] <Vartype> <Varname>
 		[#|+|-] [static] [final] <Funcname>(<argType> <argName> , <..>)[:<return>]
 	}

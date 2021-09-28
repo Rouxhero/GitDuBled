@@ -22,11 +22,30 @@ class windows(tk.Tk):
             frame.grid(row=0, column=0, sticky="nsew")
 
         # Using a method to switch frames
-        self.show_frame(MainPage)
+        self.showMenu()
+        self.show_Main()
 
-    def show_frame(self, cont):
-        frame = self.frames[cont]
+
+    def showMenu(self):
+        self.menubar = Menu(self)
+        menu1 = Menu(self.menubar, tearoff=0)
+        menu1.add_command(label="Generate Code", command=self.show_Main)
+        menu1.add_command(label="Generate UML", command=self.show_uML)
+        self.menubar.add_cascade(label="UML", menu=menu1)
+        menu2 = Menu(self.menubar, tearoff=0)
+        menu2.add_command(label="Generate Test", command=self.show_Main)
+        self.menubar.add_cascade(label="Test", menu=menu2)
+        self.config(menu=self.menubar)
+
+    def show_Main(self):
+        frame = self.frames[MainPage]
         frame.tkraise()
+
+    def show_uML(self):
+        frame = self.frames[UmlPage]
+        frame.tkraise()
+
+    
 
 
 if __name__ == "__main__":
