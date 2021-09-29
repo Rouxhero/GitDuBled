@@ -4,8 +4,8 @@
 
 # How to use !
 
-# WSD synthaxe
-
+WSD synthaxe
+-
 ```wsd
 <package1Name>{
 
@@ -27,8 +27,11 @@
 }
 
 ```
+Run
+-
 
-# Statu
+user `run.bat` or `./run.sh` to run UI
+/!\ if you have install python3 in windows path with the name `python3`, you needs to change run.bat with python3
 
 
 ## TODO 
@@ -37,5 +40,4 @@
 - corriger open GUI linux : /usr/bin/thunar ~
 - readme ??
 - import *****
-
 - faire code to teste - Nouvelle class first
