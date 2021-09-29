@@ -151,7 +151,7 @@ class UmlPage(tk.Frame):
 		elif self.edite == "Class":
 			newData = []
 			for dat in data[1:]:
-				newData.append(dat.get())
+				newData.append(str(dat.get()))
 			if self.cursor != "None":
 				self.umlCode[self.cursor][data[0].get()] = newData
 			else :
