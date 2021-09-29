@@ -1,7 +1,9 @@
 @startuml
+package util{
 
-
-
+class MapUtil{
+}
+}
 class Match{
 
 + Match(Competitor c1 , Competitor c2)
@@ -30,13 +32,13 @@ class League{
 + League()
 
 }
-class Tournement{
+class Tournament{
 
-+ Tournement()
++ Tournament()
 
 }
 
-Competition <|-- Tournement
+Competition <|-- Tournament
 Competition <|-- League
 }
 @enduml

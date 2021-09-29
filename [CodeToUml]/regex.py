@@ -30,7 +30,6 @@ def cleanE(text):
 
 
 def runRegex(arg):
-
     path = re.sub(r"/", separatorR, arg["path"])
     try:
         os.system("mkdir {}{}".format(path + separator, arg["fatherRep"]))

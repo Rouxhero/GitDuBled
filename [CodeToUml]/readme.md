@@ -30,37 +30,10 @@
 
 # Statu
 
-## Done
-
-### Docs
-
-- return
-- text
-
-### read 
-
-- package
-- func
-- var
-- class
-- link
-- interface graphique
-- Dossier Check
-
-- Docs pour arguments @param :
-`/**
-	* auto gen docs
-	* @param allCompetitor :List<Competitor>:
-		* 
-	**/
- 	public    Competition(List<Competitor> allCompetitor) ;`
-- auto gen docs -> insert text
-- clear les \s de trop
-
-
 
 ## TODO 
-
+- Corriger Extends
+- corriger Abstract FUnc
 - corriger open GUI linux : /usr/bin/thunar ~
 - readme ??
 - import *****
