@@ -98,6 +98,7 @@ def runRegex(arg):
         text = test.readline()
     print('Getting all data : Done')
     arg["output"].set("generating pacakge")
+    print(implementListe)
     joinData = {"extends": extendsListe, "implements": implementListe}
     packageFinal = []
     print('Generating package : ')

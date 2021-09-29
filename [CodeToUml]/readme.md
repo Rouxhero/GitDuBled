@@ -35,9 +35,9 @@ user `run.bat` or `./run.sh` to run UI
 
 
 ## TODO 
-- Corriger Extends
-- corriger Abstract FUnc
-- corriger open GUI linux : /usr/bin/thunar ~
-- readme ??
-- import *****
-- faire code to teste - Nouvelle class first
+- [x] Corriger Extends
+- [x] corriger Abstract FUnc
+- [ ] corriger open GUI linux : /usr/bin/thunar ~
+- [ ] import *****
+- [ ] Create UML
+- [ ] Create Test

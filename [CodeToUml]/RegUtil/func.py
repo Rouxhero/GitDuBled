@@ -8,6 +8,7 @@ class Function:
         self.data = data
         self.flag = {
             "com": tab + "/**\n\t* //TODO\n",
+            "abstract":"",
             "security": "",
             "static": "",
             "type": "",
@@ -36,7 +37,9 @@ class Function:
         text = self.data.split(space)
         for data in text:
             if data in securityType:
-                self.flag["security"] = tab + securityType[data]
+                self.flag["security"] = securityType[data]
+            elif data == "abstract}":
+                self.flag["abstract"] = "abstract"
             elif data == "static":
                 self.flag["static"] = data
             elif ":" in data:
@@ -55,7 +58,7 @@ class Function:
                 self.flag["end"] = (
                     "{\n\n\t\treturn new " + self.flag["type"] + "() ;\n\t}"
                 )
-        self.flag["com"] += tab + "**/" + line
+        self.flag["com"] += tab + "**/" + line+tab
 
     def toString(self):
         return space.join(self.flag.values()) + line
