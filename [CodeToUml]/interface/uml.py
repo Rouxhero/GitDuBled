@@ -29,6 +29,10 @@ returnOPt = {
 	"Protected":{0:"",1:"abstract"},
 	
 }
+headR = {
+	"|":"Package",
+	"@":"Class"
+}
 
 class UmlPage(tk.Frame):
 	def __init__(self, parent, controller):
@@ -73,6 +77,8 @@ class UmlPage(tk.Frame):
 		self.__setStatus()
 
 		# Fields of path
+		self.pathList = []
+		self.indexPath = 0
 		self.pathUml = tk.LabelFrame(
 			self,text="Path :", borderwidth=2, relief=GROOVE,
 		)
@@ -83,7 +89,38 @@ class UmlPage(tk.Frame):
                 borderwidth=2,
                 relief=GROOVE,).grid(column=0,row=0,sticky="w")
 		self.pathUml.grid(column=0,row=1,columnspan=3)
+		self.moveButton = {}
+		self.moveButton["Left"] = tk.Button(
+				self.pathUml,
+				text="<",
+				command=self.__moveLeft,
+				state="disabled",
+				)
+		self.moveButton["right"] = tk.Button(
+				self.pathUml,
+				text=">",
+				command=self.__moveRight,
+				state="disabled",
+				)
+		self.moveButton["Left"].grid(column=1,row=0,sticky="w")
+		self.moveButton["right"].grid(column=2,row=0,sticky="w")
+		self.__updateButton()
 
+
+	def __moveLeft(self):
+		self.indexPath -= 1
+		self.cursor = self.pathList[self.indexPath]
+		self.edite = headR[self.pathList[self.indexPath][0]]
+		print("<"+self.cursor,self.edite)
+		self.__updateButton()
+		self.__updateSate()
+	def __moveRight(self):
+		self.indexPath += 1
+		self.cursor = self.pathList[self.indexPath]
+		self.edite = headR[self.pathList[self.indexPath][0]]
+		print(">"+self.cursor,self.edite)
+		self.__updateButton()
+		self.__updateSate()
 
 	def __setOption(self):
 		for key in self.optionDicts:
@@ -123,6 +160,8 @@ class UmlPage(tk.Frame):
 				index+=1
 		tk.Button(self.Editor,text="Valide",command=self.__ValidePack).grid(column=1,row=index)
 		self.Editor.grid(column=1, row=2)
+
+
 	def __setClass(self):
 		self.Editor = tk.LabelFrame(
 			self, text="Editor", borderwidth=2, relief=GROOVE
@@ -148,14 +187,27 @@ class UmlPage(tk.Frame):
 				index+=1
 		tk.Button(self.Editor,text="Valide",command=self.__ValideClass).grid(column=1,row=index)
 		self.Editor.grid(column=1, row=2)
+
+
 	def __setVar(self):
 		pass
 	def __setFunc(self):
 		pass
 
 	def __updateButton(self):
+		print(self.pathList)
 		for key in self.Button:
 			self.Button[key].config(state=state[self.edite][key])
+		if self.indexPath <= 0 :
+			self.moveButton["Left"].config(state="disabled")
+			self.moveButton["right"].config(state="disabled")
+		elif self.indexPath > 0:
+			self.moveButton["Left"].config(state="normal")
+		elif self.indexPath > len(self.pathList) :
+			self.moveButton["right"].config(state="disabled")
+		elif self.indexPath <= len(self.pathList):
+			self.moveButton["right"].config(state="normal")
+			
 
 	def __ValidePack(self):
 		data = self.varSave[self.edite]
@@ -164,10 +216,11 @@ class UmlPage(tk.Frame):
 		self.cursor =name
 		self.edite = "Package"
 		self.Editor.destroy()
+		self.pathList.append(name)
+		self.indexPath += 1
+		self.pathUmlTxt.set("/"+name[1:]+"/")
 		self.__updateButton()
 		self.__updateSate()
-		self.pathUmlTxt.set("/"+name+"/")
-		print(self.umlCode)
 
 	def __ValideClass(self):
 		data = self.varSave[self.edite]
@@ -179,11 +232,12 @@ class UmlPage(tk.Frame):
 		self.cursor = name
 		self.edite = "Class"
 		self.Editor.destroy()
+		self.pathList.append(name)
+		self.indexPath += 1
+		old = str(self.pathUmlTxt.get())
+		self.pathUmlTxt.set(old+name[1:]+"/")
 		self.__updateButton()
 		self.__updateSate()
-		old = str(self.pathUmlTxt.get())
-		self.pathUmlTxt.set(old+name+"/")
-		print(self.umlCode)
 
 		
 

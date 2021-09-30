@@ -24,7 +24,7 @@ class windows(tk.Tk):
         # Using a method to switch frames
         self.showMenu()
         self.show_Main()
-
+        
 
     def showMenu(self):
         self.menubar = Menu(self)
