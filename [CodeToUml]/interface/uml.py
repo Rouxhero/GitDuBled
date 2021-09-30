@@ -72,6 +72,18 @@ class UmlPage(tk.Frame):
 		self.__setOption()
 		self.__setStatus()
 
+		# Fields of path
+		self.pathUml = tk.LabelFrame(
+			self,text="Path :", borderwidth=2, relief=GROOVE,
+		)
+		self.pathUmlTxt = StringVar()
+		self.pathUmlTxt.set("/")
+		tk.Label(self.pathUml,textvariable=self.pathUmlTxt, width=50,
+                bg="white",
+                borderwidth=2,
+                relief=GROOVE,).grid(column=0,row=0,sticky="w")
+		self.pathUml.grid(column=0,row=1,columnspan=3)
+
 
 	def __setOption(self):
 		for key in self.optionDicts:
@@ -92,7 +104,7 @@ class UmlPage(tk.Frame):
 		self.output_label =tk.Listbox(self.status,yscrollcommand=scrollbar.set,width=20,height=20,) 
 	
 		self.output_label.grid(column=0,row=0,sticky="w")
-		self.status.grid(column=0, row=1)
+		self.status.grid(column=0, row=2)
 
 	def __setPackage(self):  
 		self.Editor = tk.LabelFrame(
@@ -100,7 +112,7 @@ class UmlPage(tk.Frame):
 		)
 		index = 0
 		self.edite = "Package"
-		self.cursor = "Package"
+		self.cursor = "None"
 		self.__updateButton()
 		for option in PackageOpt:
 				tk.Label(self.Editor,text=option).grid(column=0,row=index)
@@ -109,8 +121,8 @@ class UmlPage(tk.Frame):
 					# self.varSave[-1].bind("<Key>", self.__ValideEdite)
 					self.varSave['Package'][-1].grid(column=3, row=index)
 				index+=1
-		tk.Button(self.Editor,text="Valide",command=self.__ValideEdite).grid(column=1,row=index)
-		self.Editor.grid(column=1, row=1)
+		tk.Button(self.Editor,text="Valide",command=self.__ValidePack).grid(column=1,row=index)
+		self.Editor.grid(column=1, row=2)
 	def __setClass(self):
 		self.Editor = tk.LabelFrame(
 			self, text="Editor", borderwidth=2, relief=GROOVE
@@ -134,8 +146,8 @@ class UmlPage(tk.Frame):
                     offvalue=0,
                 ).grid(row=index, column=0, sticky="w")
 				index+=1
-		tk.Button(self.Editor,text="Valide",command=self.__ValideEdite).grid(column=1,row=index)
-		self.Editor.grid(column=1, row=1)
+		tk.Button(self.Editor,text="Valide",command=self.__ValideClass).grid(column=1,row=index)
+		self.Editor.grid(column=1, row=2)
 	def __setVar(self):
 		pass
 	def __setFunc(self):
@@ -143,32 +155,63 @@ class UmlPage(tk.Frame):
 
 	def __updateButton(self):
 		for key in self.Button:
-			self.Button[key].config(state=state[self.edite][key],)
-	def __ValideEdite(self):
-		data = self.varSave[self.edite]
-		if self.edite == "Package":
-			self.umlCode[data[0].get()]={}
-		elif self.edite == "Class":
-			newData = []
-			for dat in data[1:]:
-				newData.append(str(dat.get()))
-			if self.cursor != "None":
-				self.umlCode[self.cursor][data[0].get()] = newData
-			else :
-				self.umlCode[data[0].get()] = newData
+			self.Button[key].config(state=state[self.edite][key])
 
-		self.edite = self.cursor
+	def __ValidePack(self):
+		data = self.varSave[self.edite]
+		name = "|"+data[0].get()
+		self.umlCode[name]={}
+		self.cursor =name
+		self.edite = "Package"
+		self.Editor.destroy()
 		self.__updateButton()
+		self.__updateSate()
+		self.pathUmlTxt.set("/"+name+"/")
+		print(self.umlCode)
+
+	def __ValideClass(self):
+		data = self.varSave[self.edite]
+		name = "@"+data[0].get()
+		if self.cursor.split(';')[-1] != "None":
+			self.umlCode[self.cursor][name]={"stat":True,"var":[],"func":[]}
+		else :
+			self.umlCode[name]={"stat":True,"var":[],"func":[]}
+		self.cursor = name
+		self.edite = "Class"
+		self.Editor.destroy()
+		self.__updateButton()
+		self.__updateSate()
+		old = str(self.pathUmlTxt.get())
+		self.pathUmlTxt.set(old+name+"/")
+		print(self.umlCode)
+
+		
+
+	def __updateSate(self):
 		self.output_label.delete(0,tk.END)
-		for pack in self.umlCode:
-			self.output_label.insert(tk.END,pack)
-			for clas in self.umlCode[pack]:
-				self.output_label.insert(tk.END,space*4+"L"+clas)
-				if self.umlCode[pack][clas]['stat']:
-					for var in self.umlCode[pack][clas]['var']:
+		for key in self.umlCode:
+			if key[0] == '|':
+				pack = key[1:]
+				self.output_label.insert(tk.END,pack)
+				for clas in self.umlCode[key]:
+					clasN = clas[1:]
+					self.output_label.insert(tk.END,space*4+"L"+clasN)
+					if self.umlCode[key][clas]['stat']:
+						for var in self.umlCode[key][clas]['var']:
+							self.output_label.insert(tk.END,space*8+" L"+var)
+						for func in self.umlCode[key][clas]['func']:
+							self.output_label.insert(tk.END,space*8+" L"+func)
+						self.output_label.insert(tk.END,"")
+			else :
+				clasN = key[1:]
+				self.output_label.insert(tk.END,space*4+"L"+clasN)
+				if self.umlCode[key]['stat']:
+					for var in self.umlCode[key]['var']:
 						self.output_label.insert(tk.END,space*8+" L"+var)
-					for func in self.umlCode[pack][clas]['func']:
+					for func in self.umlCode[key]['func']:
 						self.output_label.insert(tk.END,space*8+" L"+func)
 					self.output_label.insert(tk.END,"")
 			self.output_label.insert(tk.END,"")
-		# self.statusTExt.set(text)
+
+		# Etape :=> check in/out pack => Validate Class, check int/out class => validate var/func
+		# use validate Pack,validate Class, validate components !

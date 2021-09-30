@@ -36,6 +36,7 @@ user `run.bat` or `./run.sh` to run UI
 
 ## TODO 
 - [x] Corriger Extends
+- [ ] Problemen Extends father interface
 - [x] corriger Abstract FUnc
 - [ ] corriger open GUI linux : /usr/bin/thunar ~
 - [ ] import *****
