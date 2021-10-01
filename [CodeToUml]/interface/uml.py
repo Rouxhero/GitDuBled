@@ -77,7 +77,7 @@ class UmlPage(tk.Frame):
 		self.__setStatus()
 
 		# Fields of path
-		self.pathList = []
+		self.pathList = ["",]
 		self.indexPath = 0
 		self.pathUml = tk.LabelFrame(
 			self,text="Path :", borderwidth=2, relief=GROOVE,
@@ -107,13 +107,21 @@ class UmlPage(tk.Frame):
 		self.__updateButton()
 
 
+
 	def __moveLeft(self):
+		print(">"+self.cursor,self.edite,self.indexPath)
 		self.indexPath -= 1
-		self.cursor = self.pathList[self.indexPath]
-		self.edite = headR[self.pathList[self.indexPath][0]]
-		print("<"+self.cursor,self.edite)
+		if self.indexPath != 0:
+			self.cursor = self.pathList[self.indexPath]
+			self.edite = headR[self.pathList[self.indexPath][0]]
+		else :
+			self.edite = "None" # package,class,var,func
+			self.cursor = "None"
+
+		print("<"+self.cursor,self.edite,self.indexPath)
 		self.__updateButton()
 		self.__updateSate()
+		self.pathUmlTxt.set("/".join(self.pathList[:self.indexPath]))
 	def __moveRight(self):
 		self.indexPath += 1
 		self.cursor = self.pathList[self.indexPath]
@@ -121,6 +129,7 @@ class UmlPage(tk.Frame):
 		print(">"+self.cursor,self.edite)
 		self.__updateButton()
 		self.__updateSate()
+		self.pathUmlTxt.set("/".join(self.pathList[:self.indexPath]))
 
 	def __setOption(self):
 		for key in self.optionDicts:
