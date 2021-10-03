@@ -64,7 +64,8 @@ class ClassObject:
         for func in self.func:
             funcT += func.toString() + line
         return (
-            space.join(self.flag.values())
+            "public "
+            + space.join(self.flag.values())
             + "{"
             + line * 2
             + varT
