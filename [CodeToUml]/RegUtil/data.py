@@ -47,7 +47,7 @@ author = "/**\n*\n* @author Leo lvcdb, Adrien G\n*/"
 
 # Imprt DATA :
 maps = "import java.util.* ;"
-NoImport = ["String","Int","boolean"]
+NoImport = ["String","Int","boolean","Integer"]
 importVal = {
     "List":maps,
     "Map":maps,

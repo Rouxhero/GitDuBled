@@ -7,7 +7,7 @@ class Variable:
     def __init__(self, data):
         self.data = data
         self.flag = {"security": "", "static": "", "final": "", "text": ""}
-        self.typeS = ""
+        self.types = ""
         self.__configVar()
 
     def __configVar(self):

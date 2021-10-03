@@ -28,7 +28,7 @@ class Import :
 				tpss = tps
 				tps = []
 				for tt in tpss:
-					allD = tt.split(' , ')
+					allD = tt.split(',')
 					for al in allD:
 						tps.append(al)
 				print(tps)
