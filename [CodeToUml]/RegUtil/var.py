@@ -7,7 +7,7 @@ class Variable:
     def __init__(self, data):
         self.data = data
         self.flag = {"security": "", "static": "", "final": "", "text": ""}
-
+        self.typeS = ""
         self.__configVar()
 
     def __configVar(self):
@@ -20,6 +20,8 @@ class Variable:
             elif data == "static":
                 self.flag["static"] = data
             else:
+                if (data[0] in UPALPHA and not  data[1] in UPALPHA) or "boolean" in data :
+                   self.types = data.split('[')[0]
                 self.flag["text"] += " " + data
 
     def toString(self):

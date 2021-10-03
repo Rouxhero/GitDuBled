@@ -23,12 +23,12 @@ class Function:
 
     def __getParam(self,txt):
         txt = txt[1:-1]
-        print(txt)
+        # print(txt)
         allParam = txt.split(' , ')
-        print(allParam)
+        # print(allParam)
         for param in allParam:
             data = param.split(space)
-            print(data)
+            # print(data)
             if len(data)==2:
                 self.flag['com'] += tab + "*\n\t* @param " + data[1] + " : "+data[0]+": \n"
     def __configFunc(self):

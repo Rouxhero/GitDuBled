@@ -5,25 +5,11 @@ from RegUtil.classF import *
 from RegUtil.joint import *
 from RegUtil.package import *
 from RegUtil.makeFile import *
+from RegUtil.imports import *
 from tkinter.filedialog import *
 
 
-def cleantext(text):
-    text = re.sub("\n", "", text)
-    text = re.sub("{", "", text)
-    return text
 
-
-def cleanI(text):
-    text = re.sub(r"<\|--", "<", text)
-    text = re.sub(r"--\|>", ">", text)
-    return cleantext(text)
-
-
-def cleanE(text):
-    text = re.sub(r"\*--", "<", text)
-    text = re.sub(r"--\*", ">", text)
-    return cleantext(text)
 
 
 # arg = {path:str,fatherRep:str,projectName:str,wsdPath:str,makeFile:bool,jar;dict,readMe:bool}
@@ -117,6 +103,7 @@ def runRegex(arg):
     print('Generating : Done')
 
     arg["output"].set("Writing")
+    aa = Import(packageFinal)
     for package in packageFinal:
         package.joint(joinData)
         package.write(arg["fatherRep"], arg["projectName"], path)

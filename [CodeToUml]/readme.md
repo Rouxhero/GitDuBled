@@ -39,6 +39,6 @@ user `run.bat` or `./run.sh` to run UI
 - [ ] Problemen Extends father interface
 - [x] corriger Abstract FUnc
 - [ ] corriger open GUI linux : /usr/bin/thunar ~
-- [ ] import *****
+- [x] import *****
 - [ ] Create UML
 - [ ] Create Test

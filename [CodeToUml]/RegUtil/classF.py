@@ -18,14 +18,17 @@ class ClassObject:
             "implements": "",
             "extends": "",
         }
+        self.types = []
         self.var = []
         self.func = []
+        self.imports = ""
         self.__configClass()
         self.__configVariable()
         self.__configFunction()
+        print(self.types)
 
     def __configClass(self):
-        print(tab*3+'Config name')
+        # print(tab*3+'Config name')
         data = self.head.split(space)
         for text in data:
             if text in classType:
@@ -38,11 +41,19 @@ class ClassObject:
     def __configVariable(self):
         for var in self.data["var"]:
             self.var.append(Variable(var))
-            print(tab*3+'var :'+self.var[-1].flag['text'])
+            varTpe = self.var[-1].types
+            varTpe = varTpe.split('[')[0]
+            if not varTpe in self.types :
+                self.types.append(varTpe)
+            # print(tab*3+'var :'+self.var[-1].flag['text']
+        
 
     def __configFunction(self):
         for func in self.data["func"]:
             self.func.append(Function(func))
+            varTpe = self.func[-1].flag['type']
+            if not varTpe in self.types and not "void" in varTpe:
+                self.types.append(varTpe)
 
     def toString(self):
         varT = ""

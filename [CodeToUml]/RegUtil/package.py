@@ -37,6 +37,8 @@ class Package:
                     + "."
                     + self.name
                     + ";"
+                    + line *2
+                    + classO.imports
                     + line * 3
                     + author
                     + line * 2

@@ -1,6 +1,8 @@
 ##!/usr/bin/env python3
 # data file for all var
 import os
+import re
+
 
 if os.name == "posix":
     separator = "/"
@@ -13,6 +15,9 @@ def clearSpace(text):
     for n in range(2,10):   
         text = text.replace(" "*n," ")
     return text
+
+def cleanTT(text):
+    return text.replace(" ","")
 # Regex
 # <|-- Extends
 # *--  Implement
@@ -33,8 +38,37 @@ securityType = {"+": "public", "-": "private", "#": "protected"}
 typeReturn = {"int": "return 0;", "String": 'return "";', "boolean":"return true;"}
 
 # Commun variable
-
+UPALPHA = "AZERTYUIOPQSDFGHJKLMWXCVBN"
 tab = "\t"
 space = " "
 line = "\n"
 author = "/**\n*\n* @author Leo lvcdb, Adrien G\n*/"
+
+
+# Imprt DATA :
+maps = "import java.util.* ;"
+NoImport = ["String","Int","boolean"]
+importVal = {
+    "List":maps,
+    "Map":maps,
+    "HashMap":maps,
+    "Random":"import java.util.Random;"
+}
+
+
+def cleantext(text):
+    text = re.sub("\n", "", text)
+    text = re.sub("{", "", text)
+    return text
+
+
+def cleanI(text):
+    text = re.sub(r"<\|--", "<", text)
+    text = re.sub(r"--\|>", ">", text)
+    return cleantext(text)
+
+
+def cleanE(text):
+    text = re.sub(r"\*--", "<", text)
+    text = re.sub(r"--\*", ">", text)
+    return cleantext(text)
