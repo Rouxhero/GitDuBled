@@ -30,7 +30,7 @@ class windows(tk.Tk):
         self.menubar = Menu(self)
         menu1 = Menu(self.menubar, tearoff=0)
         menu1.add_command(label="Generate Code", command=self.show_Main)
-        menu1.add_command(label="Generate UML", command=self.show_uML)
+        menu1.add_command(label="create UML", command=self.show_uML)
         self.menubar.add_cascade(label="UML", menu=menu1)
         menu2 = Menu(self.menubar, tearoff=0)
         menu2.add_command(label="Generate Test", command=self.show_Main)

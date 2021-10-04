@@ -11,7 +11,7 @@ except Exception as e:
 
 
 def update():
-	allFIle = open("data/file","r").read().split('\n')
+	allFIle = urllib.request.urlopen("https://raw.githubusercontent.com/Rouxhero/GitDuBled/master/%5BCodeToUml%5D/data/file").read().decode().split('\n')
 	for file in allFIle:
 		if file[0] != "#":
 			url = "https://raw.githubusercontent.com/Rouxhero/GitDuBled/master/%5BCodeToUml%5D/{}".format(file)
