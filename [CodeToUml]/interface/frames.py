@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.ttk as tkk
 from tkinter.filedialog import *
 from interface.entry import *
-from regex import *
+from run.regex import *
 from interface.uml import *
 import re
 
@@ -19,7 +19,7 @@ def selectFile():
 
 defauldName = {
     "path": "path/to/project",
-    "Floder Name": "Name of the floder project",
+    "Floder Name": "Name of the folder project",
     "Project Name": "Name of project",
     "wsd file": "path/to/file.wsd",
 }
