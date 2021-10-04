@@ -1,0 +1,37 @@
+#Test
+teste/data.py
+teste/funcTest.py
+teste/__init__.py
+# Run
+run/__init__.py
+run/genTest.py
+run/interface.py
+run/regex.py
+run/test.py
+#
+#
+# RegUtil
+RegUtil/classF.py
+RegUtil/data.py
+RegUtil/func.py
+RegUtil/imports.py
+RegUtil/__init__.py
+RegUtil/joint.py
+RegUtil/makeFile.py
+RegUtil/package.py
+RegUtil/var.py
+#
+#
+#data
+data/JavaIgnore.txt
+data/temp.wsd
+data/Test.wsd
+data/version
+#
+#
+#interface
+interface/entry.py
+interface/exempleInterface.py
+interface/frames.py
+interface/__init__.py
+interface/uml.py
