@@ -48,6 +48,4 @@ class windows(tk.Tk):
     
 
 
-if __name__ == "__main__":
-    testObj = windows()
-    testObj.mainloop()
+

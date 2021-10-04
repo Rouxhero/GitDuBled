@@ -20,15 +20,16 @@ def update():
 			open(file,'w').write(data)
 			print("Done")
 	print("\nUpdate Done")
-print("Check Update : ",end="")
-# if statu :
-# 	updateV = urllib.request.urlopen('https://raw.githubusercontent.com/Rouxhero/GitDuBled/master/%5BCodeToUml%5D/data/version').read().decode()
-# 	version = open('data/version','r').read()
-# 	if version!=updateV:
-# 		print("Needs Update")
-# 		update()
-# 	else:
-# 		print("OK")
 
-update()
+if statu :
+	print("Check Update : ",end="")
+	updateV = urllib.request.urlopen('https://raw.githubusercontent.com/Rouxhero/GitDuBled/master/%5BCodeToUml%5D/data/version').read().decode()
+	version = open('data/version','r').read()
+	if version!=updateV:
+		print("Needs Update")
+		update()
+	else:
+		print("OK")
+testObj = windows()
+testObj.mainloop()
 
