@@ -2,10 +2,9 @@ import tkinter as tk
 import tkinter.ttk as tkk
 from tkinter.filedialog import *
 from interface.entry import *
-from run.regex import *
+from regex import *
 from interface.uml import *
 import re
-
 
 def selecPath():
     return askdirectory()
