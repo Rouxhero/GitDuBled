@@ -4,17 +4,9 @@ from tkinter.filedialog import *
 from interface.entry import *
 from regex import *
 from interface.uml import *
+from interface.code import *
 import re
-
-def selecPath():
-    return askdirectory()
-
-
-def selectFile():
-    return askopenfilename(
-        title="Open WSD file", filetypes=[("wsd files", ".wsd"), ("all files", ".*")]
-    )
-
+from interface.function import *
 
 defauldName = {
     "path": "path/to/project",
@@ -325,4 +317,4 @@ class MainPage(tk.Frame):
             self.fields['status'].config(bg="red")
 
 
-FramesList = (MainPage,UmlPage)
+FramesList = (MainPage,UmlPage,CodePage)
