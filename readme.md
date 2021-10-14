@@ -15,8 +15,8 @@
 - [ ] In Progress
 # Code to UML 
 
-Link [here](https://github.com/Rouxhero/GitDuBled/tree/master/%5BCodeToUml%5D)
-
+<!-- Link [here](https://github.com/Rouxhero/GitDuBled/tree/master/%5BCodeToUml%5D)
+ -->
 # Micro Game
 
 Some litle game with pyGame librarie, and test of functions
